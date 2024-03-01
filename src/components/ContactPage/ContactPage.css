@@ -1,0 +1,99 @@
+.contactpage{
+    overflow-x: hidden;
+    width: 100%;
+    height: auto;
+}
+.contactpage__content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 4rem 1rem;
+    border-radius: 20px;
+    text-align: justify;
+
+
+}
+.contactpage__title{
+    margin-bottom: 2rem;
+    font-size: var(--text-3xl);
+    font-weight: bold;
+}
+.contactpage__form{
+    background-color: #f6f6f6;
+    padding: 1rem;
+    border-radius: 20px;
+    width: 100%;
+    text-align: center;
+}
+.contactpage__custominput{
+    position: relative;
+    cursor: pointer;
+    margin: 1rem 0;
+}
+.contactpage__submitBtn{
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-size: var(--text-lg);
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 1rem;
+    margin-top: 0.5rem;
+}
+.contactpage__input{
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    border: 1px solid #f6f6f6;
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 0.5rem 0;
+}
+.contactpage__label{
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 0.8rem;
+    margin: 0rem;
+    white-space: nowrap;
+    transform: translate(0,0);
+    transform-origin: 0 0;
+}
+.contactpage__options{
+    position: fixed;
+    bottom: 0;
+    background-color: var(--background-color);
+    width: 100%;
+    text-align: center;
+}
+.contactpage__links{
+    color: var(--text-color);
+    text-decoration: none;
+    margin: 0 1rem;
+    font-size: var(--text-xl);
+}
+.contactpage__data{
+    margin: 0 4rem 2rem 4rem;
+
+}
+@media screen and (max-width:767px) {
+    .contactpage__data{
+        font-size: var(--text-sm);
+    margin: 1rem;
+
+    }
+    .contactpage__form{
+        width: 90%;
+    }
+    .contactpage__title{
+        margin-bottom: 2rem;
+        font-size: var(--text-sm);
+        font-weight: bold;
+    }
+    .contactpage__links{
+        color: var(--text-color);
+        text-decoration: none;
+        margin: 0 1rem;
+        font-size: var(--text-sm);
+    }
+}
