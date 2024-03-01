@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 const LoginPage = () => {
   return (
     <div className='loginpage'>
-      <Navbar items={['']}/>
+      <Navbar items={['Register']}/>
       <div className="loginpage__content">
         <div className="loginpage__title">
             Login
