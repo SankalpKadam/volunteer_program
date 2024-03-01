@@ -15,10 +15,7 @@ const HomepageComponent = () => {
           Welcome to the Volunteer portal
         </div>
         <div className='homepagecomponent__data'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore quibusdam aliquid modi corporis ipsa, minus reprehenderit ullam, commodi possimus delectus beatae est ipsam soluta, harum aut aperiam culpa fuga provident!
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorem ratione cum ullam? Accusamus molestias perferendis deleniti, ullam quia incidunt quisquam dolorem autem ratione laudantium delectus, perspiciatis voluptas praesentium modi fuga?
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique expedita adipisci illum velit perferendis ut sint atque officiis placeat a aspernatur, aliquam, reprehenderit, numquam iure suscipit vero. Quas, eius et!
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ut, fugiat esse quaerat eligendi nihil expedita harum quo est modi tenetur illum quia omnis, rerum accusantium deserunt sint? Cum, eius sunt.
+        Welcome to our comprehensive portal aimed at addressing the challenging transition recent graduates face in finding employment. Our platform serves as a multifaceted solution, specifically designed to support international students who often encounter obstacles in securing jobs post-graduation. Through strategic collaboration with various government departments, we've established a robust volunteer program overseen by professors, offering graduates valuable opportunities to gain experience and enhance their skills while contributing to meaningful projects. The portal streamlines the process of registration, task allocation, progress monitoring, and reporting, fostering a conducive environment for both graduates and professors to engage effectively. With user-friendly interfaces and intuitive functionalities, our portal endeavors to empower graduates in navigating the intricate landscape of job hunting, ultimately facilitating their transition into the workforce
         </div>
       </div>
         <footer className='homepagecomponent__options'>

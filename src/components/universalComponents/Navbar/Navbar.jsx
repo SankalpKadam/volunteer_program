@@ -12,7 +12,7 @@ const Navbar = ({ items }) => {
     return (
         <div className='navbar'>
             <div className='navbar__title'>
-                Volunteer Portal
+                <Link to="/" style={{"textDecoration":"none", "color":"white"}}>Volunteer Portal</Link>
             </div>
             <nav className='navbar__elements'>
                 <ul className='navbar__list' ref={menuRef}>
