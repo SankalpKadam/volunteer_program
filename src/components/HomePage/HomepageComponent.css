@@ -11,6 +11,7 @@
     justify-content: center;
     margin: 4rem 0;
     text-align: justify;
+    
 }
 
 .homepagecomponent__img{
@@ -19,15 +20,24 @@
     margin: auto;
     text-align: center;
 }
-
+.homepagecomponent__bgclass{
+    background-color: #F6F6F6;
+    margin: 0 4rem 2rem 4rem;
+    padding: 1rem;
+    border-radius: 20px;
+}
 .homepagecomponent__title{
+
     margin-bottom: 2rem;
     font-size: var(--text-3xl);
     font-weight: bold;
+    
+    text-align: center;
 }
 .homepagecomponent__data{
     font-size: var(--text-xl);
-    margin: 0 4rem 2rem 4rem;
+
+
 }
 .homepagecomponent__options{
     position: fixed;
@@ -60,5 +70,10 @@
         text-decoration: none;
         margin: 0 1rem;
         font-size: var(--text-sm);
+    }
+    .homepagecomponent__bgclass{
+        background-color: #F6F6F6;
+        margin: 0 1rem 2rem 1rem;
+
     }
 }
