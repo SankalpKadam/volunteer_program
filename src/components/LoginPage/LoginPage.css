@@ -1,0 +1,85 @@
+.loginpage{
+    overflow-x: hidden;
+    width: 100%;
+    height: auto;
+}
+.loginpage__content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* text-align: center; */
+    margin: 4rem 0;
+}
+.loginpage__title{
+
+    margin-bottom: 2rem;
+    font-size: var(--text-3xl);
+    font-weight: bold;
+    
+    text-align: center;
+}
+.loginpage__data{
+    font-size: var(--text-xl);
+    background-color: var(--background-color);
+    padding: 2rem;
+    border-radius: 10px;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+}
+.loginpage__input{
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    border: 1px solid #f6f6f6;
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 0.5rem 0;
+}
+.spanStyle{
+    color: var(--text-color);
+    width: 100%;
+    text-align: left;
+    display: block;
+}
+.loginpage__submitBtn{
+    background-color: var(--text-color);
+    padding: 0.7rem 1rem;
+    text-align: center;
+    border-radius: 5px;
+    width: 25%;
+    color: var(--background-color);
+    font-weight: bold;
+    font-size: var(--text-xl);
+    border: none;
+    margin: 1rem 0;
+}
+.loginpage__form{
+    display: block;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+}
+.loginpage__forgotpassword,.loginpage__register{
+    font-size: var(--text-sm);
+    text-align: center;
+    color: var(--text-color);
+    margin: 1rem 0 0 0;
+}
+
+@media screen and (max-width:767px) {
+    .loginpage__data{
+        width: 70%;
+    }
+    .loginpage__submitBtn{
+        padding: 0.5rem 0;
+        font-size: var(--text-lg);
+    }
+}
+@media (min-width:768px) and (max-width:1023px) {
+    .loginpage__data{
+        width: 50%;
+    }
+}
