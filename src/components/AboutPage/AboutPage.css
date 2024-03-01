@@ -8,8 +8,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 4rem 0;
+    margin: 4rem 1rem;
+    border-radius: 20px;
     text-align: justify;
+    background-color: #F6F6F6;
+
 }
 
 .aboutpage__img{
@@ -49,10 +52,6 @@
         margin-bottom: 2rem;
         font-size: var(--text-sm);
         font-weight: bold;
-    }
-    .aboutpage__img img{
-        width: 80%;
-        height: 20%;
     }
     .aboutpage__links{
         color: var(--text-color);
