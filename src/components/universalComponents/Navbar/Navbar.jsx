@@ -20,8 +20,8 @@ const Navbar = ({ items }) => {
                         // console.log(items)
                         items.map((item) => 
                             <li className='navbar__listItem'>
-                                <Link to="/login" className='navbar__link'>
-                                    {item}
+                                <Link to={`${item.link}`} className='navbar__link'>
+                                    {item.text}
                                 </Link>
                             </li>
                         )

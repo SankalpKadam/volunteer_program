@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 const RegisterPage = () => {
   return (
     <div className='registerpage'>
-      <Navbar items={["Login"]}/>
+      <Navbar items={[{text:"Login",link:"/login"}]}/>
       <div className='registerpage__content'>
         {/* <div className="registerpage__title">
             Register

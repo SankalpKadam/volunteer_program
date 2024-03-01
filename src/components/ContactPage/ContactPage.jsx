@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const ContactPage = () => {
     return (
         <div className='contactpage'>
-            <Navbar items={["Login"]} />
+            <Navbar items={[{text:"Login",link:"/login"}]} />
             <div className="contactpage__content">
                 <div className="contactpage__title">
                     Contact Us

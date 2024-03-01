@@ -4,18 +4,9 @@ import './HomepageComponent.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 const HomepageComponent = () => {
-  const navigate = useNavigate();
-  const loggedin = useSelector((state) => state.loginUser.email) //use state.<name_of_reducer>
-  const dispatch = useDispatch()
-  // useEffect(() => {
-  //   console.log(loggedin);
-  //   if (!loggedin) {
-  //     navigate("/login")
-  //   }
-  // }, [])
   return (
     <div className='homepagecomponent'>
-      <Navbar items={["Login"]} />
+      <Navbar items={[{text:"Login",link:"/login"}]} />
       <div className='homepagecomponent__content'>
         <div className='homepagecomponent__img'>
 

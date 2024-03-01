@@ -5,7 +5,7 @@ import './Servicespage.css'
 const Servicespage = () => {
     return (
         <div className='servicespage'>
-            <Navbar items={["Login"]} />
+            <Navbar items={[{text:"Login",link:"/login"}]} />
             <div className='servicespage__content'>
                 <div className="servicespage__title">
                     Services offered by the portal

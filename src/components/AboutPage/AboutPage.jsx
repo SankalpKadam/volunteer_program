@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const AboutPage = () => {
     return (
         <div className='aboutpage'>
-            <Navbar items={["Login"]} />
+            <Navbar items={[{text:"Login",link:"/login"}]} />
             <div className='aboutpage__content'>
                 <div className='aboutpage__title'>
                     About the Portal

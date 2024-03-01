@@ -16,7 +16,7 @@ const Forgotpasswordpage = () => {
     },[mailSent])
     return (
         <div className='forgotpasswordpage'>
-            <Navbar items={["Login"]} />
+            <Navbar items={[{text:"Login",link:"/login"}]} />
             <div className='forgotpasswordpage__content'>
                 <div className="forgotpasswordpage__data">
 
