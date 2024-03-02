@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from '../universalComponents/Navbar/Navbar'
 import './StudentDashboard.css'
 import Table from '../universalComponents/Table/Table'
-import SidebarDetail from '../universalComponents/Sidebar/SidebarDetail'
+import SidebarDetail from '../universalComponents/SidebarDetail/SidebarDetail'
 const StudentDashboard = () => {
     const menuItems = [{
         text: "Calendar",
@@ -89,7 +89,7 @@ const StudentDashboard = () => {
                         Deadlines
                     </div>
                     {
-                        deadlines.map((deadline, index)=> <SidebarDetail title={deadline.title} secondaryDetail={deadline.secondaryDetail}/>)
+                        deadlines.map((deadline, index)=> <SidebarDetail title={deadline.title} secondaryDetail={deadline.secondaryDetail} key={index}/>)
                     }
                 </div>
             </div>

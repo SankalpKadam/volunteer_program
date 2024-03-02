@@ -44,6 +44,7 @@ body {
   --text-9xl: 8rem; /* 128px */
   --line-9xl: 1;
   --secondary-background-color:#F6F6F6;
+  --secondary-text-color:#9C9C9C;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
