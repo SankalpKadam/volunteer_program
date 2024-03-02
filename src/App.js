@@ -8,6 +8,8 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Forgotpassword from './pages/Forgotpassword';
 import StudentHome from './pages/StudentHome';
+import Calendar from './pages/Calendar';
+import ReportSubmission from './pages/ReportSubmission';
 function App() {
   return (
     <Routes>
@@ -18,7 +20,11 @@ function App() {
       <Route path='/login' element={<Login/>}/>
       <Route path='/register' element={<Register/>}/>
       <Route path='/forgotpasswd' element={<Forgotpassword/>}/>
-      <Route path='/studenthome' element={<StudentHome/>}/>
+      <Route path='/studenthome' >
+        <Route index element={<StudentHome/>}/>
+        <Route path='calendar' element={<Calendar/>}/>
+        <Route path='submitreport' element={<ReportSubmission/>}/>
+      </Route>
     </Routes>
   );
 }
