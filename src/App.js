@@ -1,5 +1,5 @@
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import Homepage from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
@@ -12,7 +12,25 @@ import Calendar from './pages/Calendar';
 import ReportSubmission from './pages/ReportSubmission';
 import ProfessorHome from './pages/ProfessorHome';
 import StudentTaskManagement from './pages/StudentTaskManagement';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from './features/login/loginSlice';
+import { removeAuthUser } from './features/auth-user/authUserSlice';
+import { useEffect } from 'react';
+
 function App() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isLoggedIn = useSelector((state)=>state.loginUser.loggedIn);
+  const logout = ()=>{
+    dispatch(logout());
+    dispatch(removeAuthUser());
+    
+  }
+  useEffect(()=>{
+    if(!isLoggedIn){
+      navigate("/")
+    }
+  },[isLoggedIn])
   return (
     <Routes>
       <Route path='/' element={<Homepage/>}/>
@@ -32,6 +50,7 @@ function App() {
       <Route path='/professorhome'>
         <Route index element={<ProfessorHome/>}/>
       </Route>
+      {/* <Route path='/logout' element={logout}/> */}
     </Routes>
   );
 }
