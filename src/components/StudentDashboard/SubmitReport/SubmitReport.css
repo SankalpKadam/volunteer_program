@@ -1,0 +1,93 @@
+.submitreport{
+    width: 100%;
+    height: 100vh;
+    overflow-x: hidden;
+}
+.submitreport__data{
+    display: flex;
+    flex-direction: column;
+    padding: 4rem;
+    height: 90vh;
+}
+.submitreport__title{
+    font-size: var(--text-5xl);
+    font-weight: bold;
+    flex: 0.1;
+}
+.submitreport__formRow{
+    flex:0.7;
+}
+.submitreport__form{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.submitreport__form > label{
+    height: 30%;
+}
+.submitreport__row{
+    display: flex;
+    flex-direction: row;
+}
+.submitreport__label{
+    flex: 1;
+    margin: 0 1rem;
+}
+.submitreport__spanStyle{
+    color: black;
+    width: 100%;
+    text-align: left;
+    display: block;
+}
+input::file-selector-button{
+    background-color: var(--background-color);
+    padding: 1rem 2rem;
+    color: var(--text-color);
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+}
+.submitreport__fileInput{
+    margin-top: 1rem;
+}
+.submitreport__submitBtn{
+    background-color: var(--background-color);
+    padding: 0.7rem 1rem;
+    text-align: center;
+    border-radius: 5px;
+    width: 25%;
+    color: var(--text-color);
+    font-weight: bold;
+    font-size: var(--text-xl);
+    border: none;
+    margin: 1rem 0;
+}
+@media screen and (max-width:1023px) {
+    .submitreport__row{
+        flex-direction: column;
+    }
+    textarea{
+        width: 50%;
+    }
+    .submitreport__data{
+        padding: 1rem;
+    }
+}
+@media screen and (max-width:767px) {
+    .submitreport__submitBtn{
+        padding: 0.5rem 0;
+        font-size: var(--text-base);
+    }
+    .submitreport__title{
+        font-size: var(--text-xl);
+        font-weight: bold;
+        flex: 0.1;
+    }
+}
+textarea{
+    height: 100px;
+    width: 100%;
+}
+.submitreport__submit{
+    text-align: center;
+}
