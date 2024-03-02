@@ -1,13 +1,17 @@
 import React from 'react'
 import './Day.css'
-const Day = (props) => {
-    var currentDays = []
+import { Link } from 'react-router-dom'
+const Day = ({number, task, currentMonth, key}) => {
   return (
-    <div className='day'>
+    <Link className='day' to={"/studenthome/detailedTask/1"}>
       <div className='day__date'>
-
+        {number}
       </div>
-    </div>
+      {
+        task &&
+      <div className="day__task">Task Title</div>
+      }
+    </Link>
   )
 }
 

@@ -65,7 +65,7 @@
     /* flex: 1.5; */
     height: 100px;
 }
-@media screen and (max-width:767px) {
+@media screen and (max-width:768px) {
     .calendarpage__data{
         padding: 1rem;
     }
