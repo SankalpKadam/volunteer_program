@@ -12,7 +12,7 @@ export const authUserSlice = createSlice({
     },
     reducers:{
         setAuthUser:(state,action)=>{
-            state.type = action.payload.typee;
+            state.type = action.payload.type;
             state.email = action.payload.email;
             state.password = action.payload.password;
         },
