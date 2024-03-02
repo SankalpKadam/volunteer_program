@@ -11,6 +11,7 @@ const LoginPage = () => {
   const [userPasswd, setUserPasswd] = useState("") //keeps track of entered user password
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.loginUser.loggedIn)//sees if a user is logged in or not
+  const userType = useSelector((state)=>state.userData.type)
   const navigate = useNavigate();
   const authAccounts = {
     "sdt1234@mavs.uta.edu":{
@@ -51,7 +52,7 @@ const LoginPage = () => {
   }
   useEffect(()=>{
     if(isLoggedIn){
-      navigate("/studenthome")
+      userType=="student"?navigate("/studenthome"):navigate("/professorhome")
     }
   })
   return (
