@@ -51,7 +51,7 @@ const LoginPage = () => {
   }
   useEffect(()=>{
     if(isLoggedIn){
-      navigate("/")
+      navigate("/studenthome")
     }
   })
   return (
