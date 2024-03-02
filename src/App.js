@@ -10,6 +10,7 @@ import Forgotpassword from './pages/Forgotpassword';
 import StudentHome from './pages/StudentHome';
 import Calendar from './pages/Calendar';
 import ReportSubmission from './pages/ReportSubmission';
+import ProfessorHome from './pages/ProfessorHome';
 function App() {
   return (
     <Routes>
@@ -24,6 +25,9 @@ function App() {
         <Route index element={<StudentHome/>}/>
         <Route path='calendar' element={<Calendar/>}/>
         <Route path='submitreport' element={<ReportSubmission/>}/>
+      </Route>
+      <Route path='/professorhome'>
+        <Route index element={<ProfessorHome/>}/>
       </Route>
     </Routes>
   );
