@@ -6,15 +6,15 @@ import SidebarDetail from '../universalComponents/SidebarDetail/SidebarDetail'
 const StudentDashboard = () => {
     const menuItems = [{
         text: "Calendar",
-        link: "calendar"
+        link: "/studenthome/calendar"
     },
     {
         text: "Submit Reports",
-        link: "submitreport"
+        link: "/studenthome/submitreport"
     },
     {
         text: "Your Tasks",
-        link: "tasks"
+        link: "/studenthome/tasks"
     },
     {
         text: "Logout",

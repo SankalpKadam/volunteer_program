@@ -12,11 +12,11 @@ const CalendarPage = () => {
     },
     {
         text: "Submit Reports",
-        link: "submitreport"
+        link: "/studenthome/submitreport"
     },
     {
         text: "Your Tasks",
-        link: "tasks"
+        link: "/studenthome/tasks"
     },
     {
         text: "Logout",

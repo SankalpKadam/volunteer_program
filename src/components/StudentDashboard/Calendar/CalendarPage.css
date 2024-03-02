@@ -36,7 +36,6 @@
 }
 .calendarpage__days{
     display: flex;
-    background-color: black;
     justify-content: space-between;
     align-items: center;
     margin-top: 2rem;
