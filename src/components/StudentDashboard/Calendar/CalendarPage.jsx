@@ -24,29 +24,64 @@ const CalendarPage = () => {
 
     const [currentDay, setCurrentDay] = useState(new Date());
     //using month array to get current month
-    const months = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"]
-  return (
-    <div className='calendarpage'>
-      <Navbar items={menuItems.reverse()}/>
-      <div className="calendarpage__data">
-        <div className="calendarpage__title">Calendar</div>
-        <div className="calendarpage__currentMonth">
-            <div className="calendarpage__traverse">
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
+    return (
+        <div className='calendarpage'>
+            <Navbar items={menuItems.reverse()} />
+            <div className="calendarpage__data">
+                <div className="calendarpage__title">Calendar</div>
+                <div className="calendarpage__currentMonth">
+                    <div className="calendarpage__traverse">
 
-            <ArrowBackIos fontSize='var(--text-base)' />
-            </div>
-            <div className="calendarpage__actualMonth">
+                        <ArrowBackIos fontSize='var(--text-base)' />
+                    </div>
+                    <div className="calendarpage__actualMonth">
 
-            {months[currentDay.getMonth()]} {currentDay.getFullYear()}
-            </div>
-            <div className="calendarpage__traverse">
+                        {months[currentDay.getMonth()]} {currentDay.getFullYear()}
+                    </div>
+                    <div className="calendarpage__traverse">
 
-            <ArrowForwardIos fontSize='var(--text-base)'/>
+                        <ArrowForwardIos fontSize='var(--text-base)' />
+                    </div>
+                </div>
+                <div className='calendarpage__days'>
+                    {
+                        days.map((day, index) => <div className='calendarpage__singleDay'>{day}</div>)
+                    }
+                </div>
+                <div className="calendarpage__dates">
+                    <div className='calendarpage__individualDate'>
+                        29
+                    </div>
+                    <div className='calendarpage__individualDate'>
+                        29
+                    </div>
+                    <div className='calendarpage__individualDate'>
+                        29
+                    </div>
+                    <div className='calendarpage__individualDate'>
+                        29
+                    </div>
+                    <div className='calendarpage__individualDate'>
+                        29
+                    </div>
+                    <div className='calendarpage__individualDate'>
+                        29
+                    </div>
+                    <div className='calendarpage__individualDate'>
+                        29
+                    </div>
+                    <div className='calendarpage__individualDate'>
+                        29
+                    </div>
+                    <div className='calendarpage__individualDate'>
+                        29
+                    </div>
+                </div>
             </div>
         </div>
-      </div>
-    </div>
-  )
+    )
 }
 
 export default CalendarPage
