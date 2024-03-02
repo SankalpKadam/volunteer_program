@@ -10,11 +10,11 @@ const TaskManagement = () => {
     },
     {
         text: "Submit Reports",
-        link: "submitreport"
+        link: "/studenthome/submitreport"
     },
     {
         text: "Calendar",
-        link: "calendar"
+        link: "/studenthome/calendar"
     },
     {
         text: "Logout",
