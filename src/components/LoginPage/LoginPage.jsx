@@ -2,30 +2,58 @@
 import React, { useEffect, useState } from 'react'
 import './LoginPage.css'
 import Navbar from '../universalComponents/Navbar/Navbar'
-import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../../features/login/loginSlice'
-import { setUser } from '../../features/auth-user/authUserSlice'
+import { setAuthUser } from '../../features/auth-user/authUserSlice'
 const LoginPage = () => {
-  const [userEmail, setUserEmail] = useState("")
-  const [userPasswd, setUserPasswd] = useState("")
+  const [userEmail, setUserEmail] = useState("") //keeps track of entered user email
+  const [userPasswd, setUserPasswd] = useState("") //keeps track of entered user password
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.loginUser.loggedIn)//sees if a user is logged in or not
+  const navigate = useNavigate();
+  const authAccounts = {
+    "sdt1234@mavs.uta.edu":{
+      type:"student",
+      password:"student123"
+    },
+    "prof4321@uta.edu":{
+      type:"professor",
+      password:"professor123"
+    }
+  }
+
   const Login =(e)=>{
     e.preventDefault()
     if (userEmail && userPasswd){
-      dispatch(login())
-      dispatch(setUser({
-        type:"student",
-        email:userEmail,
-        password:userPasswd
-      }))
-      setUserEmail("")
-      setUserPasswd("")
+      const getCreds = authAccounts[userEmail]
+      
+      if (getCreds && (getCreds.password === userPasswd)){
+        dispatch(login())
+        dispatch(setAuthUser({
+          type:getCreds.type,
+          email:userEmail,
+          password:userPasswd,
+          username:"John Doe",
+          graduationDate:"May 2024"
+        }))
+        setUserEmail("")
+        setUserPasswd("")
+      }
+      else{
+        alert("This combination of email address and password does not exist")
+      }
+
     }
     else{
       alert("Fill in the necessary details")
     }
   }
+  useEffect(()=>{
+    if(isLoggedIn){
+      navigate("/")
+    }
+  })
   return (
     <div className='loginpage'>
       <Navbar items={[{text:"Register",link:"/register"}]}/>

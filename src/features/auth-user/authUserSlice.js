@@ -11,18 +11,18 @@ export const authUserSlice = createSlice({
 
     },
     reducers:{
-        setUser:(state,action)=>{
-            state.type = action.type;
-            state.email = action.email;
-            state.password = action.password;
+        setAuthUser:(state,action)=>{
+            state.type = action.payload.typee;
+            state.email = action.payload.email;
+            state.password = action.payload.password;
         },
-        removeUser:(state)=>{
+        removeAuthUser:(state)=>{
             state.type = "";
             state.email = "";
-            state.password=""
+            state.password="";
         }
     }
 })
 
-export const {setUser, removeUser} = authUserSlice.actions
+export const {setAuthUser, removeAuthUser} = authUserSlice.actions
 export default authUserSlice.reducer;
