@@ -7,6 +7,7 @@ import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Forgotpassword from './pages/Forgotpassword';
+import StudentHome from './pages/StudentHome';
 function App() {
   return (
     <Routes>
@@ -17,6 +18,7 @@ function App() {
       <Route path='/login' element={<Login/>}/>
       <Route path='/register' element={<Register/>}/>
       <Route path='/forgotpasswd' element={<Forgotpassword/>}/>
+      <Route path='/studenthome' element={<StudentHome/>}/>
     </Routes>
   );
 }

@@ -43,6 +43,7 @@ body {
   --line-8xl: 1;
   --text-9xl: 8rem; /* 128px */
   --line-9xl: 1;
+  --secondary-background-color:#F6F6F6;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
