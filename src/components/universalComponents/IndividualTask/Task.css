@@ -1,0 +1,78 @@
+.task__completedBtn{
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding: 1rem;
+    margin:0 1rem 0 2rem;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: var(--text-lg);
+    /* flex: 1; */
+    /* reduce font size for reponsiveness */
+}
+.task__High{
+    background-color: red;
+    
+}
+.task__priority{
+    color: var(--text-color);
+    padding: 0.5rem;
+    margin: 0 2rem;
+    flex: 1;
+}
+.task__Low{
+    background-color: green;
+}
+.task__Mid{
+    background-color: orange;
+}
+.task{
+    overflow: hidden;
+    border-bottom: 1px solid #CACACA;
+    display: block;
+    text-decoration: none;
+    color: black;
+    margin: 2rem 0;
+    padding: 0 1rem;
+    width: 100%;
+}
+.task__row1{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.task__title{
+    flex: 1;
+    font-weight: bold;
+    font-size: var(--text-lg);
+}
+.task__row2{
+    font-size: var(--text-sm);
+    color: var(--background-color);
+}
+@media screen and (max-width:660px) {
+    .task__title{
+        font-size: var(--text-sm);
+    }
+    .task__completedBtn{
+        background-color: var(--background-color);
+        color: var(--text-color);
+        padding: 1rem;
+        margin:0 1rem 0 2rem;
+        border: none;
+        border-radius: 10px;
+        font-weight: bold;
+        font-size: var(--text-xs);
+        flex: 0.3;
+        /* reduce font size for reponsiveness */
+    }
+    .task__priority{
+        font-size: var(--text-xs);
+        display: inline;
+        flex: 0.2;
+        margin: 0 0.1rem;
+    }
+    .task{
+        font-size: var(--text-xs);
+    }
+}

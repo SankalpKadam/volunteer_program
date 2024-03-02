@@ -11,6 +11,7 @@ import StudentHome from './pages/StudentHome';
 import Calendar from './pages/Calendar';
 import ReportSubmission from './pages/ReportSubmission';
 import ProfessorHome from './pages/ProfessorHome';
+import StudentTaskManagement from './pages/StudentTaskManagement';
 function App() {
   return (
     <Routes>
@@ -25,6 +26,8 @@ function App() {
         <Route index element={<StudentHome/>}/>
         <Route path='calendar' element={<Calendar/>}/>
         <Route path='submitreport' element={<ReportSubmission/>}/>
+        <Route path='tasks' element={<StudentTaskManagement/>}/>
+        {/* Remaining detail task page */}
       </Route>
       <Route path='/professorhome'>
         <Route index element={<ProfessorHome/>}/>
