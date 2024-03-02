@@ -18,8 +18,8 @@ const Navbar = ({ items }) => {
                 <ul className='navbar__list' ref={menuRef}>
                     {
                         // console.log(items)
-                        items.map((item) => 
-                            <li className='navbar__listItem'>
+                        items.map((item, index) => 
+                            <li className='navbar__listItem' key={index}>
                                 <Link to={`${item.link}`} className='navbar__link'>
                                     {item.text}
                                 </Link>
