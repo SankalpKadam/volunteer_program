@@ -1,20 +1,17 @@
 import React from 'react'
-
+import './Table.css'
+import { Link } from 'react-router-dom'
 const Table = ({
-    headings, rows
+    heading, rows
 }) => {
   return (
     <div className='table'>
-      <table>
-        <tr>
-            <th>Tasks Completed</th>
-            <th>Hours Worked</th>
-        </tr>
-        <tr>
-            <td>15</td>
-            <td>20</td>
-        </tr>
-      </table>
+      <div className='table__header'>
+        {heading}
+      </div>
+      {
+        rows.map((row, index)=><Link className='table__data' key={index} to="tasklist">{row}</Link>)
+      }
     </div>
   )
 }

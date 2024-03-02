@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from '../universalComponents/Navbar/Navbar'
 import './StudentDashboard.css'
 import Table from '../universalComponents/Table/Table'
+import SidebarDetail from '../universalComponents/Sidebar/SidebarDetail'
 const StudentDashboard = () => {
     const menuItems = [{
         text: "Calendar",
@@ -21,6 +22,24 @@ const StudentDashboard = () => {
     }
     ]
 
+    const deadlines = [
+        {
+            title:"Task 1",
+            secondaryDetail :"01/23/24"
+        },
+        {
+            title:"Task 1",
+            secondaryDetail :"01/23/24"
+        },
+        {
+            title:"Task 1",
+            secondaryDetail :"01/23/24"
+        },
+        {
+            title:"Task 1",
+            secondaryDetail :"01/23/24"
+        }
+    ]
 
     return (
         <div className='studentdashboard'>
@@ -38,11 +57,40 @@ const StudentDashboard = () => {
                         Progress
                     </div>
                     <div className="studentdashboard__table">
-                        <Table />
+                        {/* <Table headings={["Tasks Completed","Hours Worked"]} rows={[["15","20"]]}/> */}
+                        <div className='studentdashboard__tableHeader'>
+                            <div className="studentdashboard__tableIndividualHeader">
+                                Tasks Completed
+                            </div>
+                            <div className='studentdashboard__tableData'>
+                                15
+                            </div>
+                        </div>
+                        <div className='studentdashboard__tableHeader'>
+                            <div className="studentdashboard__tableIndividualHeader">
+                                Hours Worked
+                            </div>
+                            <div className='studentdashboard__tableData'>
+                                20
+                            </div>
+                        </div>
+
+                    </div>
+                    <div className="studentdashboard__secondaryTitle">
+                        Tasks
+                    </div>
+                    <div className='studentdashboard__tasklist'>
+
+                    <Table heading="Task List" rows={["Task 1", "Task 2", "Task 3","Task 4"]}/>
                     </div>
                 </div>
                 <div className='studentdashboard__deadline'>
-
+                    <div className='studentdashboard__secondaryTitle'>
+                        Deadlines
+                    </div>
+                    {
+                        deadlines.map((deadline, index)=> <SidebarDetail title={deadline.title} secondaryDetail={deadline.secondaryDetail}/>)
+                    }
                 </div>
             </div>
         </div>

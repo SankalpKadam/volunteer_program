@@ -1,4 +1,21 @@
 .table{
     width: 100%;
     height: 100%;
+    border: 1px solid #CACACA;
+    margin-top: 1rem;
+}
+.table__header{
+    background-color: var(--secondary-background-color);
+    color: black;
+    font-weight: bold;
+    /* width: 92%; */
+    border-bottom: 1px solid var(--secondary-background-color);
+    padding: 0.2rem 1rem;
+}
+.table__data{
+    text-decoration: underline;
+    color: #1665DB;
+    border-bottom: 1px solid var(--secondary-background-color);
+    padding: 0.2rem 1rem;
+    display: block;
 }

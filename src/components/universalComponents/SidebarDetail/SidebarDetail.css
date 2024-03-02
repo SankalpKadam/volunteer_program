@@ -1,0 +1,23 @@
+.sidebardetail{
+    overflow: hidden;
+    border-bottom: 1px solid #CACACA;
+    display: block;
+    text-decoration: none;
+    color: black;
+    margin: 2rem 0;
+    padding: 0 1rem;
+}
+.sidebardetail__row1{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.sidebardetail__title{
+    flex: 1;
+    font-weight: bold;
+    font-size: var(--text-lg);
+}
+.sidebardetail__row2{
+    font-size: var(--text-sm);
+    color: var(--background-color);
+}
