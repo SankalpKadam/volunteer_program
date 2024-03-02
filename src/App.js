@@ -12,20 +12,14 @@ import Calendar from './pages/Calendar';
 import ReportSubmission from './pages/ReportSubmission';
 import ProfessorHome from './pages/ProfessorHome';
 import StudentTaskManagement from './pages/StudentTaskManagement';
-import { useDispatch, useSelector } from 'react-redux';
-import { logout } from './features/login/loginSlice';
-import { removeAuthUser } from './features/auth-user/authUserSlice';
+import Logout from './pages/Logout';
+import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
+
 function App() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
   const isLoggedIn = useSelector((state)=>state.loginUser.loggedIn);
-  const logout = ()=>{
-    dispatch(logout());
-    dispatch(removeAuthUser());
-    
-  }
+  const navigate = useNavigate();
   useEffect(()=>{
     if(!isLoggedIn){
       navigate("/")
@@ -50,7 +44,9 @@ function App() {
       <Route path='/professorhome'>
         <Route index element={<ProfessorHome/>}/>
       </Route>
-      {/* <Route path='/logout' element={logout}/> */}
+      <Route path='/logout'>
+        <Route index element={<Logout/>}/>
+      </Route>
     </Routes>
   );
 }
