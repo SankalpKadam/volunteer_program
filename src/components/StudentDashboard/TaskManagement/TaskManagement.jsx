@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Navbar from '../../universalComponents/Navbar/Navbar'
 import './TaskManagement.css'
 import SidebarDetail from '../../universalComponents/SidebarDetail/SidebarDetail'
 import Task from '../../universalComponents/IndividualTask/Task'
+import { useSelector } from 'react-redux'
 const TaskManagement = () => {
+    const allTasks = useSelector((state)=>state.taskData.Tasks)
     const menuItems = [
         {
             text: "Home",
@@ -52,6 +54,9 @@ const TaskManagement = () => {
             priority: "High"
         }
     ]
+    useEffect(()=>{
+        console.log(allTasks);
+    },[])
     return (
         <div className='taskmanagement'>
             <Navbar items={menuItems.reverse()} />
@@ -65,7 +70,7 @@ const TaskManagement = () => {
                     <div className="taskmanagement__taskList">
 
                         {
-                            deadlines.map((deadline, index) => <Task title={deadline.title} deadline={deadline.secondaryDetail} priority={deadline.priority} description={"Lorem ipsum genereted demo description to help with displaying the text"} />)
+                            allTasks.map((deadline, index) => !deadline.status && <Task title={deadline.title} deadline={deadline.deadline} priority={deadline.priority} description={deadline.description} id={index}/>)
                         }
                     </div>
 
@@ -77,7 +82,7 @@ const TaskManagement = () => {
                     <div className="taskmanagement__taskList">
 
                         {
-                            deadlines.map((deadline, index) => <SidebarDetail title={deadline.title} secondaryDetail={deadline.secondaryDetail} description={deadline.description} key={index} />)
+                            allTasks.map((deadline, index) => deadline.status && <SidebarDetail title={deadline.title} secondaryDetail={deadline.deadline} description={deadline.description.slice(20,80)+"...."} key={index} />)
                         }
                     </div>
                 </div>

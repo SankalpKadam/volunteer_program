@@ -2,10 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import './Task.css'
 import { useDispatch } from 'react-redux'
-const Task = ({title, description, priority, deadline}) => {
+import { setCompleted } from '../../../features/tasks/taskSlice'
+const Task = ({title, description, priority, deadline,id}) => {
     const dispatch = useDispatch();
     const setTaskStatus = ()=>{
-        
+        dispatch(setCompleted({id:id}))
     }
   return (
     <Link className='task' to={"detailed"}>
