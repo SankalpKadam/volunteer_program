@@ -47,7 +47,7 @@ const SubmitReport = () => {
                                 {/* <input type="text" name="" pattern="^[A-Za-z\s]*$" id="emailaddress" className='loginpage__input' /> */}
                             </label>
                             <label htmlFor="" className='submitreport__label'>
-                                <span className='submit__spanStyle'>Email Address</span>
+                                <span className='submit__spanStyle'>Submission Date</span>
                                 <input type="date" value={`${year}-${month}-${date}`} id="date" className='loginpage__input' contentEditable={false}/>
                             </label>
                         </div>
