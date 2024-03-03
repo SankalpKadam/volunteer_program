@@ -34,7 +34,7 @@ const SubmitReport = () => {
     console.log(`${year}-${month}-${date}`);
     return (
         <div className='submitreport'>
-            <Navbar items={menuItems} />
+            <Navbar items={menuItems.reverse()} />
             <div className="submitreport__data">
                 <div className="submitreport__title">Weekly Report Submission</div>
                 <div className="submitreport__formRow">
