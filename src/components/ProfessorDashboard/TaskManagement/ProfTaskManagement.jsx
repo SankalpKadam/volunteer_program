@@ -109,7 +109,7 @@ const ProfTaskManagement = () => {
                     <div className="taskmanagement__taskList">
 
                     {
-                        allTasks.map((deadline, index) => <SidebarDetail title={deadline.title} secondaryDetail={deadline.deadline} description={deadline.description.slice(0,50)+"..."} key={index} />)
+                        allTasks.map((deadline, index) => <SidebarDetail title={deadline.title} secondaryDetail={deadline.deadline} description={deadline.description.slice(0,50)+"..."} key={index} link={"/professorhome/detailed"}/>)
                     }
                     </div>
                 </div>
