@@ -4,9 +4,14 @@ import './Forgotpasswordpage.css'
 const Forgotpasswordpage = () => {
     const textRef = useRef();
     const [mailSent, setMailSent] = useState(false)
+    const [emailaddress, setEmailAddress] = useState("")
     const showText = (e)=>{
-        console.log(e.target);
-       setMailSent(true)
+        if (emailaddress) {
+            setEmailAddress("")
+            setMailSent(true)
+        }else{
+            alert("Provide email address")
+        }
        e.preventDefault() 
     }
     useEffect(()=>{
@@ -23,9 +28,9 @@ const Forgotpasswordpage = () => {
                     <form className='forgotpasswordpage__form'>
                         <label htmlFor="" className='registerpage__label'>
                             <span className='spanStyle'>Email</span>
-                            <input type="email" name="" pattern=".+@example\.com" id="emailaddress" className='registerpage__input' required={true} />
+                            <input type="email" name="" pattern=".+@example\.com" id="emailaddress" className='registerpage__input' required={true} value={emailaddress} onChange={(e)=>setEmailAddress(e.target.value)}/>
                         </label>
-                        <button type="submit" className='registerpage__submitBtn' onClick={showText}>Send</button>
+                        <button className='registerpage__submitBtn' onClick={showText}>Send</button>
                     </form>
                 </div>
                 <div className='forgotpasswordpage__resetText' ref={textRef}>
