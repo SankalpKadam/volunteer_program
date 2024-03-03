@@ -14,8 +14,12 @@ const Reports = () => {
             link: "/professorhome/recommend"
         },
         {
-            text: "Tasks",
-            link: "/professorhome/tasks"
+            text: "Reports",
+            link: "/professorhome/report"
+        },
+        {
+            text:"Tasks",
+            link:"/professorhome/tasks"
         },
         {
             text: "Logout",

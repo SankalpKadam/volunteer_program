@@ -3,22 +3,27 @@ import Navbar from '../universalComponents/Navbar/Navbar'
 import './ProfessorDashboard.css'
 import Table from '../universalComponents/Table/Table'
 const ProfessorDashboard = () => {
-    const menuItems = [{
-        text: "Recommendations",
-        link: "/professorhome/recommend"
-    },
-    {
-        text: "Reports",
-        link: "/professorhome/report"
-    },
-    {
-        text: "Tasks",
-        link: "/professorhome/tasks"
-    },
-    {
-        text: "Logout",
-        link: "/logout"
-    }
+    const menuItems = [
+        {
+            text: "Home",
+            link: "/professorhome"
+        },
+        {
+            text: "Recommendations",
+            link: "/professorhome/recommend"
+        },
+        {
+            text: "Reports",
+            link: "/professorhome/report"
+        },
+        {
+            text:"Tasks",
+            link:"/professorhome/tasks"
+        },
+        {
+            text: "Logout",
+            link: "/logout"
+        }
     ]
     return (
         <div className='professordashboard'>
