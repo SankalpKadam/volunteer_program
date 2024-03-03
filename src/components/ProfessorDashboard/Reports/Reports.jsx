@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from '../../universalComponents/Navbar/Navbar'
 import SidebarDetail from '../../universalComponents/SidebarDetail/SidebarDetail'
 import './Reports.css'
 import { Link } from 'react-router-dom'
 const Reports = () => {
+    const [feedback, setFeedback] = useState("")
     const menuItems = [
         {
             text: "Home",
@@ -44,6 +45,17 @@ const Reports = () => {
             secondaryDetail: "View"
         }
     ]
+
+    function sendFeedback(e){
+        if (feedback){
+            e.preventDefault()
+            alert("Feedback submitted")
+            setFeedback("")
+        }
+        else{
+            alert("Fill all details")
+        }
+    }
     return (
         <div className='reports'>
             <Navbar items={menuItems.reverse()} />
@@ -73,8 +85,8 @@ const Reports = () => {
                     <div className='reports__secondaryTitle'>
                         Feedback
                     </div>
-                    <textarea name="feedback" id="feedback"></textarea>
-                    <button className='submitreport__submitBtn'>Submit</button>
+                    <textarea name="feedback" id="feedback" value={feedback} onChange={(e)=>setFeedback(e.target.value)}></textarea>
+                    <button className='submitreport__submitBtn' onClick={sendFeedback}>Submit</button>
 
                 </div>
                 <div className='reports__deadline'>
