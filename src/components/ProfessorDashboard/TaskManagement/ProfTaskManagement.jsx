@@ -3,11 +3,38 @@ import Navbar from '../../universalComponents/Navbar/Navbar'
 import SidebarDetail from '../../universalComponents/SidebarDetail/SidebarDetail'
 import Task from '../../universalComponents/IndividualTask/Task'
 import './ProfTaskManagement.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { addTask } from '../../../features/tasks/taskSlice'
 const ProfTaskManagement = () => {
     const [selectedValue, setSelectedValue] = useState("Click to select student");
+    const [taskTitle, setTaskTitle] = useState("");
+    const [taskDescription, setTaskDescription] = useState("");
+    const [submissionDate, setSubmissionDate] = useState("")
+    
     const dropDownref = useRef();
+    const allTasks = useSelector((state)=>state.taskData.Tasks);
+    const dispatch = useDispatch();
+
     function toggleDropDown(params) {
         dropDownref.current.classList.toggle("showDropDown")
+    }
+    function addNewTask(e) {
+        e.preventDefault();
+        if (selectedValue!="Click to select student" && taskTitle && taskDescription && submissionDate) {
+            dispatch(addTask({
+                id:allTasks.length,
+                title:taskTitle,
+                description:taskDescription,
+                deadline:submissionDate,
+            }))
+            setSelectedValue("Click to select student")
+            setTaskDescription("")
+            setTaskTitle("")
+            setSubmissionDate("")
+        }
+        else{
+            alert("Fill all the details");
+        }
     }
     const menuItems = [
         {
@@ -23,36 +50,15 @@ const ProfTaskManagement = () => {
             link: "/professorhome/report"
         },
         {
+            text:"Tasks",
+            link:"/professorhome/tasks"
+        },
+        {
             text: "Logout",
             link: "/logout"
         }
     ]
-    const deadlines = [
-        {
-            title: "Task 1",
-            secondaryDetail: "01/23/24",
-            description: "Lorem ipsum genereted demo description to help with displaying the text",
-            priority: "High"
-        },
-        {
-            title: "Task 2",
-            secondaryDetail: "01/23/24",
-            description: "Lorem ipsum genereted demo description to help with displaying the text",
-            priority: "Low"
-        },
-        {
-            title: "Task 3",
-            secondaryDetail: "01/23/24",
-            description: "Lorem ipsum genereted demo description to help with displaying the text",
-            priority: "Mid"
-        },
-        {
-            title: "Task 4",
-            secondaryDetail: "01/23/24",
-            description: "Lorem ipsum genereted demo description to help with displaying the text",
-            priority: "High"
-        }
-    ]
+    
     const studentList = [
         "Sankalp Kadam", "Nagendrababu Kalyanapu", "Purva Ingle", "Rajeswari Jeevanrao", "Neeharika Katragadda"
     ]
@@ -69,26 +75,30 @@ const ProfTaskManagement = () => {
                     <form className='proftaskmanagement__form'>
                         <label htmlFor="" className='proftaskmanagement__label'>
                             <span className='submit__spanStyle'>Task Title</span>
-                            <input type="text" name="" pattern="^[A-Za-z\s]*$" id="taskTitle" className='proftaskmanagement__input' />
+                            <input type="text" name="" pattern="^[A-Za-z\s]*$" id="taskTitle" className='proftaskmanagement__input' value={taskTitle} onChange={(e)=>{setTaskTitle(e.target.value)}}/>
                         </label>
                         <label htmlFor="" className='proftaskmanagement__label'>
                             <span className='submit__spanStyle'>Task Details</span>
-                            <textarea name="taskDetails" id="taskDetails" ></textarea>
+                            <textarea name="taskDetails" id="taskDetails" value={taskDescription} onChange={(e)=>setTaskDescription(e.target.value)}></textarea>
                         </label>
                         <label htmlFor="" className='proftaskmanagement__label'>
                             <span className='submit__spanStyle'>Submission Date</span>
-                            <input type="date" id="proftaskmanagementdate" className='proftaskmanagement__input' />
+                            <input type="date" id="proftaskmanagementdate" className='proftaskmanagement__input' onChange={(e)=>{
+                                setSubmissionDate(e.target.value);
+                            }}/>
                         </label>
                         <label htmlFor="" className='proftaskmanagement__label'>
                             <span className='submit__spanStyle'>Submission Date</span>
-                            <input type="text" id="proftaskmanagementdate" className='proftaskmanagement__input' placeholder='Click to Select student' onClick={toggleDropDown} value={selectedValue} />
+                            <input type="text" id="proftaskmanagementdate" className='proftaskmanagement__input' placeholder='Click to Select student' onClick={toggleDropDown} value={selectedValue} onChange={(e)=>{
+                                setSelectedValue(selectedValue)
+                            }}/>
                             <div className="dropdown" ref={dropDownref}>
                                 {
                                     studentList.map((student, index) => <p className='dropdown__item' key={index} id={student} onClick={() => { setSelectedValue(student); toggleDropDown() }}>{student}</p>)
                                 }
                             </div>
                         </label>
-                        <button className='submitreport__submitBtn'>Assign</button>
+                        <button className='submitreport__submitBtn' onClick={addNewTask}>Assign</button>
                     </form>
 
                 </div>
@@ -96,9 +106,12 @@ const ProfTaskManagement = () => {
                     <div className='studentdashboard__secondaryTitle'>
                         Assigned Tasks
                     </div>
+                    <div className="taskmanagement__taskList">
+
                     {
-                        deadlines.map((deadline, index) => <SidebarDetail title={deadline.title} secondaryDetail={deadline.secondaryDetail} description={deadline.description} key={index} />)
+                        allTasks.map((deadline, index) => <SidebarDetail title={deadline.title} secondaryDetail={deadline.deadline} description={deadline.description.slice(0,50)+"..."} key={index} />)
                     }
+                    </div>
                 </div>
             </div>
 
