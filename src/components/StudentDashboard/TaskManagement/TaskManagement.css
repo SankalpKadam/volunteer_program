@@ -14,3 +14,10 @@
     font-size: var(--text-5xl);
     font-weight: bold;
 }
+.taskmanagement__taskList{
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.taskmanagement__taskList::-webkit-scrollbar{
+    display: none;
+}

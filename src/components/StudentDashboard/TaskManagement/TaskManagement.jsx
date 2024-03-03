@@ -31,25 +31,25 @@ const TaskManagement = () => {
             title: "Task 1",
             secondaryDetail: "01/23/24",
             description: "Lorem ipsum genereted demo description to help with displaying the text",
-            priority:"High"
+            priority: "High"
         },
         {
             title: "Task 2",
             secondaryDetail: "01/23/24",
             description: "Lorem ipsum genereted demo description to help with displaying the text",
-            priority:"Low"
+            priority: "Low"
         },
         {
             title: "Task 3",
             secondaryDetail: "01/23/24",
             description: "Lorem ipsum genereted demo description to help with displaying the text",
-            priority:"Mid"
+            priority: "Mid"
         },
         {
             title: "Task 4",
             secondaryDetail: "01/23/24",
             description: "Lorem ipsum genereted demo description to help with displaying the text",
-            priority:"High"
+            priority: "High"
         }
     ]
     return (
@@ -62,18 +62,24 @@ const TaskManagement = () => {
                     <div className="studentdashboard__secondaryTitle">
                         Pending Tasks
                     </div>
-                    {
-                        deadlines.map((deadline,index)=><Task title={deadline.title} deadline={deadline.secondaryDetail} priority={deadline.priority} description={"Lorem ipsum genereted demo description to help with displaying the text"}/>)
-                    }
-                    
+                    <div className="taskmanagement__taskList">
+
+                        {
+                            deadlines.map((deadline, index) => <Task title={deadline.title} deadline={deadline.secondaryDetail} priority={deadline.priority} description={"Lorem ipsum genereted demo description to help with displaying the text"} />)
+                        }
+                    </div>
+
                 </div>
                 <div className='studentdashboard__deadline'>
                     <div className='studentdashboard__secondaryTitle'>
                         Completed Tasks
                     </div>
-                    {
-                        deadlines.map((deadline, index) => <SidebarDetail title={deadline.title} secondaryDetail={deadline.secondaryDetail} description={deadline.description} key={index} />)
-                    }
+                    <div className="taskmanagement__taskList">
+
+                        {
+                            deadlines.map((deadline, index) => <SidebarDetail title={deadline.title} secondaryDetail={deadline.secondaryDetail} description={deadline.description} key={index} />)
+                        }
+                    </div>
                 </div>
             </div>
         </div>
