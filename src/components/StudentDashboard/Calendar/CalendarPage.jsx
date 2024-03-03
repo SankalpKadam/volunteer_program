@@ -73,7 +73,7 @@ const CalendarPage = () => {
                 </div>
                 <div className="calendarpage__dates">
                     {
-                        daysToAddToCalendar.map((day, index) => <div className='calendarpage__individualDate' key={index}><Day number={day.number} task={day.task}/></div>)
+                        daysToAddToCalendar.map((day, index) => <div className='calendarpage__individualDate' key={index}><Day number={day.number} task={day.task} id={index}/></div>)
                     }
                 
                 </div>

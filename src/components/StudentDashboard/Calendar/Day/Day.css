@@ -12,6 +12,7 @@
     margin: 1rem;
     border-radius: 5px;
     text-align: center;
+    overflow: hidden;
 }
 @media screen and (max-width:767px) {
     .day__task{

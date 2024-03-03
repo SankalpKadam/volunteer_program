@@ -15,7 +15,8 @@ const createCalendarArray = (currentDay) =>{
         let calendarDay = {
           currentMonth: (firstDayOfMonth.getMonth() === currentDay.getMonth()),
           number: firstDayOfMonth.getDate(),
-          task: (i === 0 || i === 5 || i===17 || i===28 || i===31)
+          task: (i === 0 || i === 5 || i===17 || i===28 || i===31),
+          id:i
         }
         daysToAddToCalendar.push(calendarDay);
     }
