@@ -42,7 +42,7 @@ const LoginPage = () => {
         setUserPasswd("")
       }
       else{
-        alert("This combination of email address and password does not exist")
+        alert("Email address or password is incorrect")
       }
 
     }
