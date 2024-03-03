@@ -5,15 +5,15 @@ import Table from '../universalComponents/Table/Table'
 const ProfessorDashboard = () => {
     const menuItems = [{
         text: "Recommendations",
-        link: "recommend"
+        link: "/professorhome/recommend"
     },
     {
         text: "Reports",
-        link: "report"
+        link: "/professorhome/report"
     },
     {
         text: "Tasks",
-        link: "tasks"
+        link: "/professorhome/tasks"
     },
     {
         text: "Logout",
