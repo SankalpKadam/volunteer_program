@@ -18,6 +18,7 @@ import { useEffect } from 'react';
 import ProfessorReports from './pages/ProfessorReports';
 import ProfessorTaskManagement from './pages/ProfessorTaskManagement';
 import ProfessorRecommendations from './pages/ProfessorRecommendations';
+import TaskDetailed from './pages/TaskDetailed';
 
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
         <Route path='calendar' element={<Calendar/>}/>
         <Route path='submitreport' element={<ReportSubmission/>}/>
         <Route path='tasks' element={<StudentTaskManagement/>}/>
+        <Route path='detailed' element={<TaskDetailed/>}/>
         {/* Remaining detail task page */}
       </Route>
       <Route path='/professorhome'>
