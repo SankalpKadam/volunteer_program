@@ -15,6 +15,7 @@ import StudentTaskManagement from './pages/StudentTaskManagement';
 import Logout from './pages/Logout';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import ProfessorReports from './pages/ProfessorReports';
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
       </Route>
       <Route path='/professorhome'>
         <Route index element={<ProfessorHome/>}/>
+        <Route path='report' element={<ProfessorReports/>}/>
       </Route>
       <Route path='/logout'>
         <Route index element={<Logout/>}/>
