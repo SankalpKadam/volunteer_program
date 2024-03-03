@@ -1,9 +1,25 @@
 // References - https://codepen.io/meodai/pen/rNedxBa
-import React from 'react';
+import React, { useState } from 'react';
 import './ContactPage.css';
 import Navbar from '../universalComponents/Navbar/Navbar';
 import { Link } from 'react-router-dom';
 const ContactPage = () => {
+    const [firstname, setFirstName] = useState("")
+    const [lastname, setLastName] = useState("")
+    const [email, setEmail] = useState("")
+    const [message, setMessage] = useState("")
+    function sendMessage(e) {
+        e.preventDefault()
+        if(firstname && lastname && email && message){
+            alert("Message sent")
+            setEmail("")
+            setFirstName("")
+            setLastName("")
+            setMessage("")
+        }else{
+            alert("Fill all the details")
+        }
+    }
     return (
         <div className='contactpage'>
             <Navbar items={[{text:"Login",link:"/login"}]} />
@@ -17,27 +33,27 @@ const ContactPage = () => {
                         <label className='contactpage__custominput'>
                             <span>First Name</span>
 
-                            <input type="text" name="" id="name" className='contactpage__input' placeholder='Type your first name here...' />
+                            <input type="text" name="" id="name" className='contactpage__input' placeholder='Type your first name here...' value={firstname} onChange={(e)=>setFirstName(e.target.value)}/>
                             {/* <span className='contactpage__label'>Type Full Name here...</span> */}
                         </label>
                         <label className='contactpage__custominput'>
                             <span>Last Name</span>
-                            <input type="text" name="" id="name" className='contactpage__input' placeholder='Type your last name here...' />
+                            <input type="text" name="" id="name" className='contactpage__input' placeholder='Type your last name here...' value={lastname} onChange={(e)=>setLastName(e.target.value)}/>
                             {/* <span className='contactpage__label'>Type Full Name here...</span> */}
                         </label>
                         <label className='contactpage__custominput'>
                             <span>Email Name</span>
 
-                            <input type="text" name="" id="name" className='contactpage__input' placeholder='Type your email here...' />
+                            <input type="text" name="" id="name" className='contactpage__input' placeholder='Type your email here...' value={email} onChange={(e)=>setEmail(e.target.value)}/>
                             {/* <span className='contactpage__label'>Type Full Name here...</span> */}
                         </label>
                         <label className='contactpage__custominput'>
                             <span>Message</span>
 
-                            <input type="text" name="" id="name" className='contactpage__input' placeholder='Type your message here...' />
+                            <input type="text" name="" id="name" className='contactpage__input' placeholder='Type your message here...' value={message} onChange={(e)=>setMessage(e.target.value)}/>
                             {/* <span className='contactpage__label'>Type Full Name here...</span> */}
                         </label>
-                        <button type="submit" className='contactpage__submitBtn'>
+                        <button onClick={sendMessage} className='contactpage__submitBtn'>
                             Send Query
                         </button>
                     </form>
