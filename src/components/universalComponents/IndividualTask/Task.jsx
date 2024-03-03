@@ -9,7 +9,7 @@ const Task = ({title, description, priority, deadline,id}) => {
         dispatch(setCompleted({id:id}))
     }
   return (
-    <Link className='task' to={"detailed"}>
+    <Link className='task'>
             <div className='task__row1'>
                 <div className="task__title">{title}
                 {/* <span style={{"marginLeft":"1rem","fontSize":"var(--text-sm)","fontWeight":"normal"}}>Priority:</span>  */}

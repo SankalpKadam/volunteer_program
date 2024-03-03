@@ -7,6 +7,7 @@
     border-radius: 10px;
     font-weight: bold;
     font-size: var(--text-lg);
+    cursor: pointer;
     /* flex: 1; */
     /* reduce font size for reponsiveness */
 }
