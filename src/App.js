@@ -56,6 +56,8 @@ function App() {
         <Route path='recommend' element={<ProfessorRecommendations/>}/>
         <Route path='aicheck' element={<AIReport/>}/>
         <Route path='reportviewer' element={<ReportViewerPage/>}/>
+        <Route path='detailed' element={<TaskDetailed/>}/>
+
       </Route>
       <Route path='/logout'>
         <Route index element={<Logout/>}/>

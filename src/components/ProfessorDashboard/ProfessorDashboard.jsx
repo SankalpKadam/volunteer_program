@@ -2,7 +2,9 @@ import React from 'react'
 import Navbar from '../universalComponents/Navbar/Navbar'
 import './ProfessorDashboard.css'
 import Table from '../universalComponents/Table/Table'
+import { useSelector } from 'react-redux'
 const ProfessorDashboard = () => {
+    const allTasks = useSelector((state)=>state.taskData.Tasks)
     const menuItems = [
         {
             text: "Home",
@@ -41,7 +43,7 @@ const ProfessorDashboard = () => {
                     <div className="professordashboard__tables">
                         <div className="professordashboard__table1">
 
-                            <Table heading="Task List" rows={["Task 1", "Task 2", "Task 3", "Task 4"]} />
+                            <Table heading="Task List" rows={allTasks} />
                         </div>
                         <div className="professordashboard__table1">
 
@@ -49,7 +51,7 @@ const ProfessorDashboard = () => {
                         </div>
                         <div className="professordashboard__table1">
 
-                            <Table heading="Reports" rows={["Report 1", "Report 2", "Report 3", "Report 4"]} />
+                            <Table heading="Reports" rows={[{title:"Report 1",link:"/professorhome/reportviewer"}, {title:"Report 2",link:"/professorhome/reportviewer"}, {title:"Report 3",link:"/professorhome/reportviewer"}, {title:"Report 4",link:"/professorhome/reportviewer"}]} />
                         </div>
                     </div>
                 </div>

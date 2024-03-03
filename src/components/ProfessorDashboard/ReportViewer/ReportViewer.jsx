@@ -1,5 +1,6 @@
 import React from 'react'
 import './ReportViewer.css'
+// import DetailedTask from '../../universalComponents/DetailedTask/DetailedTask'
 const ReportViewer = () => {
   return (
     <div className='reportviewer'>

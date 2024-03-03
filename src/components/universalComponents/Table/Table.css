@@ -19,3 +19,10 @@
     padding: 0.2rem 1rem;
     display: block;
 }
+.nodecoration__tableData{
+    text-decoration: none;
+    color: black;
+    border-bottom: 1px solid var(--secondary-background-color);
+    padding: 0.2rem 1rem;
+    display: block;
+}
