@@ -28,32 +28,7 @@ const TaskManagement = () => {
             link: "/logout"
         }
     ]
-    const deadlines = [
-        {
-            title: "Task 1",
-            secondaryDetail: "01/23/24",
-            description: "Lorem ipsum genereted demo description to help with displaying the text",
-            priority: "High"
-        },
-        {
-            title: "Task 2",
-            secondaryDetail: "01/23/24",
-            description: "Lorem ipsum genereted demo description to help with displaying the text",
-            priority: "Low"
-        },
-        {
-            title: "Task 3",
-            secondaryDetail: "01/23/24",
-            description: "Lorem ipsum genereted demo description to help with displaying the text",
-            priority: "Mid"
-        },
-        {
-            title: "Task 4",
-            secondaryDetail: "01/23/24",
-            description: "Lorem ipsum genereted demo description to help with displaying the text",
-            priority: "High"
-        }
-    ]
+    
     useEffect(()=>{
         console.log(allTasks);
     },[])
