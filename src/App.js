@@ -19,6 +19,7 @@ import ProfessorReports from './pages/ProfessorReports';
 import ProfessorTaskManagement from './pages/ProfessorTaskManagement';
 import ProfessorRecommendations from './pages/ProfessorRecommendations';
 import TaskDetailed from './pages/TaskDetailed';
+import AIReport from './pages/AIReport';
 
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
         <Route path='report' element={<ProfessorReports/>}/>
         <Route path='tasks' element={<ProfessorTaskManagement/>}/>
         <Route path='recommend' element={<ProfessorRecommendations/>}/>
+        <Route path='aicheck' element={<AIReport/>}/>
       </Route>
       <Route path='/logout'>
         <Route index element={<Logout/>}/>

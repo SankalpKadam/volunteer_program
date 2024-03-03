@@ -3,8 +3,13 @@ import Navbar from '../../universalComponents/Navbar/Navbar'
 import SidebarDetail from '../../universalComponents/SidebarDetail/SidebarDetail'
 import './Reports.css'
 import { Link } from 'react-router-dom'
+import AICheck from '../AI Check/AICheck'
 const Reports = () => {
     const [feedback, setFeedback] = useState("")
+    const [openAIReport, setOpenAIReport] = useState(false)
+    function closeDialog() {
+        setOpenAIReport(false)
+    }
     const menuItems = [
         {
             text: "Home",
@@ -81,7 +86,7 @@ const Reports = () => {
                         Report
                     </div>
                     <button className='submitreport__submitBtn'>View Report</button>
-                    <Link className='reports__aiCheck'>Do AI anti-cheating check</Link>
+                    <Link className='reports__aiCheck' onClick={()=>setOpenAIReport(true)}>Do AI anti-cheating check</Link>
                     <div className='reports__secondaryTitle'>
                         Feedback
                     </div>
@@ -98,6 +103,10 @@ const Reports = () => {
                     }
                 </div>
             </div>
+           {openAIReport && <div className='aireport'>
+                    <AICheck/>
+                    <button className='submitreport__submitBtn' onClick={closeDialog}>Close</button>
+            </div>}
         </div>
     )
 }

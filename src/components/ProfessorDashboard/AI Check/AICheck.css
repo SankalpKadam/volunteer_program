@@ -1,0 +1,13 @@
+.aicheck{
+    overflow: hidden;
+}
+.aicheck__data{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.aicheck__secondaryTitle{
+    margin-top: 2rem;
+    font-size: var(--text-2xl);
+    /* font-weight: bold; */
+}
