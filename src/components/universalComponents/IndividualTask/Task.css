@@ -52,6 +52,8 @@
 .task__row2{
     font-size: var(--text-sm);
     color: var(--background-color);
+    margin-top: 1rem;
+    width: 60%;
 }
 @media screen and (max-width:660px) {
     .task__title{
@@ -77,5 +79,9 @@
     }
     .task{
         font-size: var(--text-xs);
+    }
+    .task__row2{
+        font-size: var(--text-xs);
+        width: 80%;
     }
 }
