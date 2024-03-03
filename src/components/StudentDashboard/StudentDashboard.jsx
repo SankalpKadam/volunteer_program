@@ -4,40 +4,45 @@ import './StudentDashboard.css'
 import Table from '../universalComponents/Table/Table'
 import SidebarDetail from '../universalComponents/SidebarDetail/SidebarDetail'
 const StudentDashboard = () => {
-    const menuItems = [{
-        text: "Calendar",
-        link: "/studenthome/calendar"
-    },
-    {
-        text: "Submit Reports",
-        link: "/studenthome/submitreport"
-    },
-    {
-        text: "Your Tasks",
-        link: "/studenthome/tasks"
-    },
-    {
-        text: "Logout",
-        link: "/logout"
-    }
+    const menuItems = [
+        {
+            text: "Home",
+            link: "/studenthome"
+        },
+        {
+            text: "Calendar",
+            link: "/studenthome/calendar"
+        },
+        {
+            text: "Submit Reports",
+            link: "/studenthome/submitreport"
+        },
+        {
+            text: "Your Tasks",
+            link: "/studenthome/tasks"
+        },
+        {
+            text: "Logout",
+            link: "/logout"
+        }
     ]
 
     const deadlines = [
         {
-            title:"Task 1",
-            secondaryDetail :"01/23/24"
+            title: "Task 1",
+            secondaryDetail: "01/23/24"
         },
         {
-            title:"Task 1",
-            secondaryDetail :"01/23/24"
+            title: "Task 1",
+            secondaryDetail: "01/23/24"
         },
         {
-            title:"Task 1",
-            secondaryDetail :"01/23/24"
+            title: "Task 1",
+            secondaryDetail: "01/23/24"
         },
         {
-            title:"Task 1",
-            secondaryDetail :"01/23/24"
+            title: "Task 1",
+            secondaryDetail: "01/23/24"
         }
     ]
 
@@ -81,7 +86,7 @@ const StudentDashboard = () => {
                     </div>
                     <div className='studentdashboard__tasklist'>
 
-                    <Table heading="Task List" rows={["Task 1", "Task 2", "Task 3","Task 4"]}/>
+                        <Table heading="Task List" rows={["Task 1", "Task 2", "Task 3", "Task 4"]} />
                     </div>
                 </div>
                 <div className='studentdashboard__deadline'>
@@ -89,7 +94,7 @@ const StudentDashboard = () => {
                         Deadlines
                     </div>
                     {
-                        deadlines.map((deadline, index)=> <SidebarDetail title={deadline.title} secondaryDetail={deadline.secondaryDetail} key={index}/>)
+                        deadlines.map((deadline, index) => <SidebarDetail title={deadline.title} secondaryDetail={deadline.secondaryDetail} key={index} />)
                     }
                 </div>
             </div>

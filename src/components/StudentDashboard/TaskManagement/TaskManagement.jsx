@@ -4,22 +4,27 @@ import './TaskManagement.css'
 import SidebarDetail from '../../universalComponents/SidebarDetail/SidebarDetail'
 import Task from '../../universalComponents/IndividualTask/Task'
 const TaskManagement = () => {
-    const menuItems = [{
-        text: "Home",
-        link: "/studenthome"
-    },
-    {
-        text: "Submit Reports",
-        link: "/studenthome/submitreport"
-    },
-    {
-        text: "Calendar",
-        link: "/studenthome/calendar"
-    },
-    {
-        text: "Logout",
-        link: "/logout"
-    }
+    const menuItems = [
+        {
+            text: "Home",
+            link: "/studenthome"
+        },
+        {
+            text: "Calendar",
+            link: "/studenthome/calendar"
+        },
+        {
+            text: "Submit Reports",
+            link: "/studenthome/submitreport"
+        },
+        {
+            text: "Your Tasks",
+            link: "/studenthome/tasks"
+        },
+        {
+            text: "Logout",
+            link: "/logout"
+        }
     ]
     const deadlines = [
         {

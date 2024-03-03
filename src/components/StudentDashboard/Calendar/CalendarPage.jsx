@@ -6,22 +6,27 @@ import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material'
 import createCalendarArray from './CreateCalendar'
 import Day from './Day/Day'
 const CalendarPage = () => {
-    const menuItems = [{
-        text: "Home",
-        link: "/studenthome"
-    },
-    {
-        text: "Submit Reports",
-        link: "/studenthome/submitreport"
-    },
-    {
-        text: "Your Tasks",
-        link: "/studenthome/tasks"
-    },
-    {
-        text: "Logout",
-        link: "/logout"
-    }
+    const menuItems = [
+        {
+            text: "Home",
+            link: "/studenthome"
+        },
+        {
+            text: "Calendar",
+            link: "/studenthome/calendar"
+        },
+        {
+            text: "Submit Reports",
+            link: "/studenthome/submitreport"
+        },
+        {
+            text: "Your Tasks",
+            link: "/studenthome/tasks"
+        },
+        {
+            text: "Logout",
+            link: "/logout"
+        }
     ]
 
     const [currentDay, setCurrentDay] = useState(new Date());

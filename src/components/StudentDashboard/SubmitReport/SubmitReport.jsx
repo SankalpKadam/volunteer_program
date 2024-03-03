@@ -3,22 +3,27 @@ import React from 'react'
 import Navbar from '../../universalComponents/Navbar/Navbar'
 import './SubmitReport.css'
 const SubmitReport = () => {
-    const menuItems = [{
-        text: "Home",
-        link: "/studenthome"
-    },
-    {
-        text: "Calendar",
-        link: "/studenthome/calendar"
-    },
-    {
-        text: "Your Tasks",
-        link: "/studenthome/tasks"
-    },
-    {
-        text: "Logout",
-        link: "/logout"
-    }
+    const menuItems = [
+        {
+            text: "Home",
+            link: "/studenthome"
+        },
+        {
+            text: "Calendar",
+            link: "/studenthome/calendar"
+        },
+        {
+            text: "Submit Reports",
+            link: "/studenthome/submitreport"
+        },
+        {
+            text: "Your Tasks",
+            link: "/studenthome/tasks"
+        },
+        {
+            text: "Logout",
+            link: "/logout"
+        }
     ]
     const getTodayDate = new Date();
     var month = `${getTodayDate.getMonth()+1}`;
