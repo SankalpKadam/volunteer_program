@@ -27,7 +27,7 @@ const StudentDashboard = () => {
             link: "/logout"
         }
     ]
-    const allTasks = useSelector((state)=>state.taskData.Tasks)
+    const allTasks = useSelector((state) => state.taskData.Tasks)
 
     return (
         <div className='studentdashboard'>
@@ -76,9 +76,12 @@ const StudentDashboard = () => {
                     <div className='studentdashboard__secondaryTitle'>
                         Deadlines
                     </div>
-                    {
-                        allTasks.map((deadline, index) => !deadline.status && <SidebarDetail title={deadline.title} secondaryDetail={deadline.deadline} key={index} link={"/studenthome/detailed"}/>)
-                    }
+                    <div className="taskmanagement__taskList">
+
+                        {
+                            allTasks.map((deadline, index) => !deadline.status && <SidebarDetail title={deadline.title} secondaryDetail={deadline.deadline} key={index} link={"/studenthome/detailed"} />)
+                        }
+                    </div>
                 </div>
             </div>
         </div>
