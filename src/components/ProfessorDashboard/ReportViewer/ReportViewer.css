@@ -1,0 +1,19 @@
+.reportviewer{
+    width: 100%;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.reportviewer__img{
+    width: 100%;
+    height: 60%;
+}
+img{
+    width: 100%;
+}
+@media screen and (max-width:1023px) {
+    .reportviewer{
+        flex-direction: column;
+    }
+}

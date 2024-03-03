@@ -2,11 +2,12 @@ import React, { useState } from 'react'
 import Navbar from '../../universalComponents/Navbar/Navbar'
 import SidebarDetail from '../../universalComponents/SidebarDetail/SidebarDetail'
 import './Reports.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import AICheck from '../AI Check/AICheck'
 const Reports = () => {
     const [feedback, setFeedback] = useState("")
     const [openAIReport, setOpenAIReport] = useState(false)
+    const navigate = useNavigate();
     function closeDialog() {
         setOpenAIReport(false)
     }
@@ -85,7 +86,7 @@ const Reports = () => {
                     <div className="reports__secondaryTitle">
                         Report
                     </div>
-                    <button className='submitreport__submitBtn'>View Report</button>
+                    <button className='submitreport__submitBtn' onClick={()=>navigate("/professorhome/reportviewer")}>View Report</button>
                     <Link className='reports__aiCheck' onClick={()=>setOpenAIReport(true)}>Do AI anti-cheating check</Link>
                     <div className='reports__secondaryTitle'>
                         Feedback

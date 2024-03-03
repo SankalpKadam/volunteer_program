@@ -20,6 +20,8 @@ import ProfessorTaskManagement from './pages/ProfessorTaskManagement';
 import ProfessorRecommendations from './pages/ProfessorRecommendations';
 import TaskDetailed from './pages/TaskDetailed';
 import AIReport from './pages/AIReport';
+import ReportViewer from './components/ProfessorDashboard/ReportViewer/ReportViewer';
+import ReportViewerPage from './pages/ReportViewerPage';
 
 
 function App() {
@@ -53,6 +55,7 @@ function App() {
         <Route path='tasks' element={<ProfessorTaskManagement/>}/>
         <Route path='recommend' element={<ProfessorRecommendations/>}/>
         <Route path='aicheck' element={<AIReport/>}/>
+        <Route path='reportviewer' element={<ReportViewerPage/>}/>
       </Route>
       <Route path='/logout'>
         <Route index element={<Logout/>}/>

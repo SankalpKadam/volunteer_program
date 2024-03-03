@@ -10,7 +10,7 @@ const Table = ({
         {heading}
       </div>
       {
-        rows.map((row, index)=>!row.status&&<Link className='table__data' key={index} to="tasks">{row.title}</Link>)
+        rows.map((row, index)=>!row.status&&<Link className='table__data' key={index} to={row.link?row.link:"/professorhome/tasks"}>{row.title?row.title:row}</Link>)
       }
     </div>
   )
