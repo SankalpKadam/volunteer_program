@@ -57,7 +57,7 @@ const TaskManagement = () => {
                     <div className="taskmanagement__taskList">
 
                         {
-                            allTasks.map((deadline, index) => deadline.status && <SidebarDetail title={deadline.title} secondaryDetail={deadline.deadline} description={deadline.description.slice(20,80)+"...."} key={index} />)
+                            allTasks.map((deadline, index) => deadline.status && <SidebarDetail title={deadline.title} secondaryDetail={deadline.deadline} description={deadline.description.slice(20,80)+"...."} key={index} link={"/studenthome/detailed"}/>)
                         }
                     </div>
                 </div>

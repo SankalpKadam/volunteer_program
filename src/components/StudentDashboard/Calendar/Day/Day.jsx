@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 const Day = ({number, task, currentMonth, id}) => {
   return (
-    <Link className='day' to={"/studenthome/tasks"}>
+    <Link className='day' to={"/studenthome/detailed"}>
       <div className='day__date'>
         {number}
       </div>

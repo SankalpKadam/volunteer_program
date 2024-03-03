@@ -77,7 +77,7 @@ const StudentDashboard = () => {
                         Deadlines
                     </div>
                     {
-                        allTasks.map((deadline, index) => !deadline.status && <SidebarDetail title={deadline.title} secondaryDetail={deadline.deadline} key={index} />)
+                        allTasks.map((deadline, index) => !deadline.status && <SidebarDetail title={deadline.title} secondaryDetail={deadline.deadline} key={index} link={"/studenthome/detailed"}/>)
                     }
                 </div>
             </div>
