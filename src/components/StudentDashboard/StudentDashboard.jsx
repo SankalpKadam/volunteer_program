@@ -3,6 +3,7 @@ import Navbar from '../universalComponents/Navbar/Navbar'
 import './StudentDashboard.css'
 import Table from '../universalComponents/Table/Table'
 import SidebarDetail from '../universalComponents/SidebarDetail/SidebarDetail'
+import { useSelector } from 'react-redux'
 const StudentDashboard = () => {
     const menuItems = [
         {
@@ -26,25 +27,7 @@ const StudentDashboard = () => {
             link: "/logout"
         }
     ]
-
-    const deadlines = [
-        {
-            title: "Task 1",
-            secondaryDetail: "01/23/24"
-        },
-        {
-            title: "Task 1",
-            secondaryDetail: "01/23/24"
-        },
-        {
-            title: "Task 1",
-            secondaryDetail: "01/23/24"
-        },
-        {
-            title: "Task 1",
-            secondaryDetail: "01/23/24"
-        }
-    ]
+    const allTasks = useSelector((state)=>state.taskData.Tasks)
 
     return (
         <div className='studentdashboard'>
@@ -86,7 +69,7 @@ const StudentDashboard = () => {
                     </div>
                     <div className='studentdashboard__tasklist'>
 
-                        <Table heading="Task List" rows={["Task 1", "Task 2", "Task 3", "Task 4"]} />
+                        <Table heading="Task List" rows={allTasks} />
                     </div>
                 </div>
                 <div className='studentdashboard__deadline'>
@@ -94,7 +77,7 @@ const StudentDashboard = () => {
                         Deadlines
                     </div>
                     {
-                        deadlines.map((deadline, index) => <SidebarDetail title={deadline.title} secondaryDetail={deadline.secondaryDetail} key={index} />)
+                        allTasks.map((deadline, index) => !deadline.status && <SidebarDetail title={deadline.title} secondaryDetail={deadline.deadline} key={index} />)
                     }
                 </div>
             </div>
