@@ -72,9 +72,10 @@ const Servicespage = () => {
           <Link to="/about" className='aboutpage__links'>About</Link>
           <Link to="/services" className='aboutpage__links'>Services</Link>
           <Link to="/contact" className='aboutpage__links'>Contact</Link>
+          <Link to="https://pxi1063.uta.cloud/blog" className='homepagecomponent__links' >Blog</Link>
           <h5 style={{"color":"white","fontWeight":"normal"}}>
 
-          Copyright Group5 WDM UTA
+          Copyright Group 5 WDM UTA
           </h5>
         </footer>
         </div>

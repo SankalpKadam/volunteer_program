@@ -26,8 +26,9 @@ const HomepageComponent = () => {
         <Link to="/about" className='homepagecomponent__links'>About</Link>
         <Link to="/services" className='homepagecomponent__links'>Services</Link>
         <Link to="/contact" className='homepagecomponent__links'>Contact</Link>
+        <Link to="https://pxi1063.uta.cloud/blog" className='homepagecomponent__links' >Blog</Link>
         <h5 style={{ "color": "white", "fontWeight": "normal" }}>
-          Copyright Group5 WDM UTA
+          Copyright Group 5 WDM UTA
         </h5>
       </footer>
     </div>
