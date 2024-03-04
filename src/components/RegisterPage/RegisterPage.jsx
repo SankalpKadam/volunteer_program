@@ -22,6 +22,7 @@ const RegisterPage = () => {
                 setNewEmail("")
                 setPassword("")
                 setPhoneNumber("")
+                alert("A verification email has been sent to you")
                 navigate("/login")
 
             }else{
