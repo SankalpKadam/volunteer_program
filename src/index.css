@@ -3,6 +3,11 @@ Kadam, Sankalp (1002072319) Kalyanapu, Nagendrababu (1002115034)
 Katragadda, Neeharika (1002159315) */
 
 /* Font - Poppins */
+/* Colors - background-color:#3981EC;
+  text-color:white;
+  paragraph-bg:#F6F6F6; 
+  secondary-background-color:#F6F6F6;
+  secondary-text-color:#9C9C9C;*/
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 body {
