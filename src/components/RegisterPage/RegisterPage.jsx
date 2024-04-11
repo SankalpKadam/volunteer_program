@@ -24,7 +24,7 @@ const RegisterPage = () => {
                     'student_email':newEmail,
                     'student_phone_number':phonenumber
                 }).then((response)=>{
-                    if (response.status != 200){
+                    if (response.data.status != 200){
                         alert('User Not added')
                     }
                 })

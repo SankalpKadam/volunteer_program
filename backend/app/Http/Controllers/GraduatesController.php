@@ -56,6 +56,11 @@ class GraduatesController extends Controller
                 'message'=>"This combination of email and password does not exist"
             ]);
         }
-        return $users;
+        return response()->json([
+            'status'=>200,
+            'message'=>"Login successful",
+            'userInfo'=>$users,
+            'type'=>'student'
+        ]);;
     }
 }

@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../../features/login/loginSlice'
 import { setAuthUser } from '../../features/auth-user/authUserSlice'
+import axios from 'axios';
 const LoginPage = () => {
   const [userEmail, setUserEmail] = useState("") //keeps track of entered user email
   const [userPasswd, setUserPasswd] = useState("") //keeps track of entered user password
@@ -27,23 +28,49 @@ const LoginPage = () => {
   const Login =(e)=>{
     e.preventDefault()
     if (userEmail && userPasswd){
-      const getCreds = authAccounts[userEmail]
+      // const getCreds = authAccounts[userEmail]
       
-      if (getCreds && (getCreds.password === userPasswd)){
-        dispatch(login())
-        dispatch(setAuthUser({
-          type:getCreds.type,
-          email:userEmail,
-          password:userPasswd,
-          username:"John Doe",
-          graduationDate:"May 2024"
-        }))
+      // if (getCreds && (getCreds.password === userPasswd)){
+        // dispatch(login())
+        let api_url = process.env.REACT_APP_API_URL
+        if(userEmail.includes('mavs.uta.edu')){
+          api_url += '/login'
+        }
+        else{
+          if (userEmail.includes('uta.edu')){
+            api_url += '/professorlogin'
+          }
+          else{
+            alert("Check your email again")
+            return
+          }
+        }
+        console.log(api_url);
+        axios.post(api_url,{
+          
+          'student_email':userEmail,
+          'student_password':userPasswd
+        }).then((response)=>{
+          console.log(response);
+          if (response.data.status != 200){
+            alert('Email address or password is incorrect')
+          }else{
+            dispatch(login())
+            dispatch(setAuthUser({
+              type:response.data.type,
+              email:response.data.userInfo.student_email,
+              password:response.data.userInfo.student_password,
+              username:response.data.userInfo.student_name,
+              graduationDate:response.data.userInfo.student_graduation_date
+            }))
+          }
+        })
         setUserEmail("")
         setUserPasswd("")
-      }
-      else{
-        alert("Email address or password is incorrect")
-      }
+      // }
+      // else{
+      //   alert("Email address or password is incorrect")
+      // }
 
     }
     else{
