@@ -17,7 +17,16 @@ class GraduatesController extends Controller
         $graduate->student_email = $request->input('student_email');
         $graduate->student_password = $request->input('student_password');
         $graduate->student_phone_number = $request->input('student_phone_number');
-        // $graduate->save();
+        try {
+            //code...
+            $graduate->save();
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json([
+                'status'=>400,
+                'message'=>"Email or phone number already exists"
+            ]);
+        }
         $data = [
             'subject'=>'Welcome to Volutneer Hub',
             'body'=>"Welcome to the volunteer hub",
@@ -38,8 +47,15 @@ class GraduatesController extends Controller
         }
     }
 
-    public function Login(Request $request) {
+    public function login(Request $request) {
         \Log::info(json_encode($request->all()));
-        
+        $users = Graduates::where('student_email',$request->input('student_email'))->first();
+        if (!$users || !($users->student_password==$request->input("student_password"))){
+            return response()->json([
+                'status'=>500,
+                'message'=>"This combination of email and password does not exist"
+            ]);
+        }
+        return $users;
     }
 }

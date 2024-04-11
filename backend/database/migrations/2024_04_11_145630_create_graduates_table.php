@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('student_name');
             $table->date('student_graduation_date');
-            $table->string('student_email');
+            $table->string('student_email')->unique();
             $table->string('student_password');
-            $table->string('student_phone_number');
+            $table->string('student_phone_number')->unique();
             // $table->timestamps();
         });
     }
