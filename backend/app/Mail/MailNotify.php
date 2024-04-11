@@ -29,8 +29,7 @@ class MailNotify extends Mailable
     {
         return new Envelope(
             from: new Address('sankalp.grinds@gmail.com','Sankalp Kadam'),
-            subject: $this->data['subject'],
-            body:'We are excited to have you on our volunteer portal'
+            subject: $this->data['subject']
         );
     }
 
@@ -40,7 +39,11 @@ class MailNotify extends Mailable
     public function content(): Content
     {
         return new Content(
-            view:'mail.email_sent'
+            view:'mail.email_sent',
+            with:[
+                'name'=>$this->data['name'],
+                'body'=>'We are excited to have you on our volunteer portal'
+            ]
         );
     }
 

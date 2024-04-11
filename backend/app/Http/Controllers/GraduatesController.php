@@ -20,10 +20,11 @@ class GraduatesController extends Controller
         // $graduate->save();
         $data = [
             'subject'=>'Welcome to Volutneer Hub',
-            'body'=>"Welcome to the volunteer hub"
+            'body'=>"Welcome to the volunteer hub",
+            'name'=>$request->input('student_name')
         ];
         try{
-            Mail::to('sankalpkadam.ms07@gmail.com')->send(new MailNotify($data));
+            Mail::to($request->input('student_email'))->send(new MailNotify($data));
 
             return response()->json([
                 'status'=>200,
@@ -35,5 +36,10 @@ class GraduatesController extends Controller
                 'message'=>"Mail not sent Successfully"
             ]);
         }
+    }
+
+    public function Login(Request $request) {
+        \Log::info(json_encode($request->all()));
+        
     }
 }
