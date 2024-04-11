@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import './RegisterPage.css'
 import Navbar from '../universalComponents/Navbar/Navbar'
 import { Link, useAsyncError, useNavigate } from 'react-router-dom'
+import axios from 'axios';
 const RegisterPage = () => {
     const [name, setName] = useState("");
     const [newEmail, setNewEmail] = useState("");
@@ -12,10 +13,21 @@ const RegisterPage = () => {
     const [confirmpassword, setConfirmPassword] = useState("");
     const navigate = useNavigate()
     function registerUser(e) {
+        const api_url = process.env.REACT_APP_API_URL;
         e.preventDefault()
         if(name && newEmail && phonenumber && gradDate && password && confirmpassword){
             if (password===confirmpassword) {
-                
+                axios.post(api_url+'/register',{
+                    'student_name':name,
+                    'student_password':password,
+                    'student_graduation_date':gradDate+'-10',
+                    'student_email':newEmail,
+                    'student_phone_number':phonenumber
+                }).then((response)=>{
+                    if (response.status != 200){
+                        alert('User Not added')
+                    }
+                })
                 setConfirmPassword("")
                 setGradDate("")
                 setName("")
