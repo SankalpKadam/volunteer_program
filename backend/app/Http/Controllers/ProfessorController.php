@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Professors;
-
+use App\Models\Graduates;
 use Illuminate\Http\Request;
 
 class ProfessorController extends Controller
@@ -22,5 +22,11 @@ class ProfessorController extends Controller
             'userInfo'=>$users,
             'type'=>'professor'
         ]);;
+    }
+
+    public function getstudents(Request $request){
+        \Log::info(json_encode($request->all()));
+        $users = Graduates::where('professor_id',1)->get();
+        return $users;
     }
 }
