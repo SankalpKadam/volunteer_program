@@ -8,6 +8,15 @@ const Task = ({title, description, priority, deadline,id}) => {
     const setTaskStatus = ()=>{
         dispatch(setCompleted({id:id}))
     }
+    if (priority == 1){
+        priority = "High"
+    }
+    else if(priority == 2) {
+        priority = "Mid"
+    }
+    else{
+        priority = "Low"
+    }
   return (
     <Link className='task'>
             <div className='task__row1'>

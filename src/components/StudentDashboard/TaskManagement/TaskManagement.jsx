@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../../universalComponents/Navbar/Navbar'
 import './TaskManagement.css'
 import SidebarDetail from '../../universalComponents/SidebarDetail/SidebarDetail'
 import Task from '../../universalComponents/IndividualTask/Task'
 import { useSelector } from 'react-redux'
+import axios from 'axios'
 const TaskManagement = () => {
-    const allTasks = useSelector((state)=>state.taskData.Tasks)
+    const loggedInStudent = useSelector((state) => state.userData)
     const menuItems = [
         {
             text: "Home",
@@ -28,10 +29,20 @@ const TaskManagement = () => {
             link: "/logout"
         }
     ]
-    
-    useEffect(()=>{
-        console.log(allTasks);
-    },[])
+
+    const [allTasks, setallTasks] = useState([]);
+    useEffect(() => {
+        const api_url = process.env.REACT_APP_API_URL;
+        // console.log(userId);
+        axios.get(api_url + '/getStudentTasks', {
+            params: {
+                "id": loggedInStudent.id
+            }
+        }).then((response) => {
+            setallTasks(response.data.tasks)
+            // console.log(allTasks);
+        });
+    }, [])
     return (
         <div className='taskmanagement'>
             <Navbar items={menuItems.reverse()} />
@@ -45,7 +56,7 @@ const TaskManagement = () => {
                     <div className="taskmanagement__taskList">
 
                         {
-                            allTasks.map((deadline, index) => !deadline.status && <Task title={deadline.title} deadline={deadline.deadline} priority={deadline.priority} description={deadline.description} id={index}/>)
+                            allTasks.map((deadline, index) => !deadline.task_status && <Task title={deadline.task_title} deadline={deadline.task_deadline} priority={deadline.task_priority} description={deadline.task_description} id={index} />)
                         }
                     </div>
 
@@ -55,9 +66,8 @@ const TaskManagement = () => {
                         Completed Tasks
                     </div>
                     <div className="taskmanagement__taskList">
-
                         {
-                            allTasks.map((deadline, index) => deadline.status && <SidebarDetail title={deadline.title} secondaryDetail={deadline.deadline} description={deadline.description.slice(20,80)+"...."} key={index} link={"/studenthome/detailed"}/>)
+                            allTasks.map((deadline, index) => deadline.task_status && <SidebarDetail title={deadline.task_title} secondaryDetail={deadline.task_deadline} description={deadline.task_description.slice(0,50) + "...."} key={index} link={"/studenthome/detailed"} />)
                         }
                     </div>
                 </div>

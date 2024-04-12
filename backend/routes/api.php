@@ -18,6 +18,7 @@ Route::post('/professorlogin',[ProfessorController::class, 'login']);
 #Routes to work with Tasks
 Route::get('/getStudentTasks',[TaskController::class,'getStudentTasks']);
 Route::post('/savetask',[TaskController::class,'saveTask']);
+Route::post('/updatetaskstatus',[TaskController::class,'updatestatus']);
 
 #Miscellaneous routes
 Route::get('/volunteerstudents',[ProfessorController::class,'getstudents']);
