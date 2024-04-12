@@ -9,7 +9,14 @@ class ReportController extends Controller
 {
     public function saveReport(Request $request){
         \Log::info(json_encode($request->all()));
-        $newReport = new Reports;
+        if (Reports::where('graduate_id',$request->input('graduate_id'))->get()) {
+            $newReport = Reports::where('graduate_id',$request->input('graduate_id'))->get()[0];
+        \Log::info($newReport);
+
+        }
+        else{
+            $newReport = new Reports;
+        }
         $newReport->content = $request->input('content');
         $newReport->accomplishments = $request->input('accomplishments');
         $newReport->justification = $request->input('justification');
@@ -71,6 +78,17 @@ class ReportController extends Controller
         return response()->json([
             "status"=>200,
             'reports'=>$reports
+        ]);
+    }
+
+    public function saveFeedback(Request $request){
+        \Log::info(json_encode($request->all()));
+        $report = Reports::find($request->input('id'));
+        $report->report__feedback = $request->input('feedback');
+        $report->save();
+        return response()->json([
+            "status"=>200,
+            "message"=>"Feedback saved"
         ]);
     }
 }

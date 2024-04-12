@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('justification');
             $table->date('submission_date');
             $table->string('report_path');
+            $table->string('report__feedback')->nullable();
             $table->foreignId('graduate_id')->constrained()->onDelete('cascade');
             $table->foreignId('professor_id')->constrained()->onDelete('cascade');
             // $table->timestamps();

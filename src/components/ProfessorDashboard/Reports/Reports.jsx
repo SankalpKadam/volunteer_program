@@ -61,7 +61,19 @@ const Reports = () => {
     function sendFeedback(e){
         if (feedback){
             e.preventDefault()
-            alert("Feedback submitted")
+            axios.post(process.env.REACT_APP_API_URL+'/feedback',{
+                'id':currentReport.id,
+                'feedback':feedback
+            }).then((response)=>{
+                console.log(response);
+                if (response.data.status != 200){
+                    alert("Feedback not submitted")
+                }
+                else{
+
+                    alert("Feedback submitted")
+                }
+            }).catch((err)=>console.log(err))
             setFeedback("")
         }
         else{

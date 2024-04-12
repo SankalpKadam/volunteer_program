@@ -106,7 +106,6 @@ export const taskSlice = createSlice({
             state.currentReport.submission_date=action.payload.submission_date,
             state.currentReport.title=action.payload.title
 
-
         },
         addTask: (state, action) => {
             state.Tasks.push(
