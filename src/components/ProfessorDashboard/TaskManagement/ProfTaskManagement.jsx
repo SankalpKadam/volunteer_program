@@ -4,7 +4,7 @@ import SidebarDetail from '../../universalComponents/SidebarDetail/SidebarDetail
 import Task from '../../universalComponents/IndividualTask/Task'
 import './ProfTaskManagement.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { addTask } from '../../../features/tasks/taskSlice'
+// import { addTask } from '../../../features/tasks/taskSlice'
 import axios from 'axios'
 const ProfTaskManagement = () => {
     const [selectedValue, setSelectedValue] = useState("Click to select student");
@@ -15,32 +15,39 @@ const ProfTaskManagement = () => {
     const [allTasks, setAllTasks] = useState([]);
     const loggedInProfessor = useSelector((state)=>state.userData);
     const dropDownref = useRef();
+    const dropDownref2 = useRef();
     const dispatch = useDispatch();
-
+    const [priority, setPriority] = useState(0); 
     function toggleDropDown(params) {
         dropDownref.current.classList.toggle("showDropDown")
     }
+    function toggleDropDown2(){
+
+        dropDownref2.current.classList.toggle("showDropDown")
+    }
     function addNewTask(e) {
         e.preventDefault();
-        if (selectedValue!="Click to select student" && taskTitle && taskDescription && submissionDate) {
+        if (selectedValue!="Click to select student" && taskTitle && taskDescription && submissionDate && priority) {
             const api_url = process.env.REACT_APP_API_URL+'/savetask';
             axios.post(api_url,{
                 'title':taskTitle,
                 'description':taskDescription,
                 'deadline':submissionDate,
-                'graduate_id':selectedValue
+                'graduate_id':selectedValue,
+                'priority':priority,
+                'professor_id':loggedInProfessor.id
             }).then((response)=>{
                 console.log(response.data);
                 if(response.data.status != 200){
                     alert("New task was not added")
                 }else{
 
-                    dispatch(addTask({
-                        id:allTasks.length,
-                        title:taskTitle,
-                        description:taskDescription,
-                        deadline:submissionDate,
-                    }))
+                    // dispatch(addTask({
+                    //     id:allTasks.length,
+                    //     title:taskTitle,
+                    //     description:taskDescription,
+                    //     deadline:submissionDate,
+                    // }))
                 }
             })
             setSelectedValue("Click to select student")
@@ -48,6 +55,7 @@ const ProfTaskManagement = () => {
             setTaskDescription("")
             setTaskTitle("")
             setSubmissionDate("")
+            setPriority(0)
         }
         else{
             alert("Fill all the details");
@@ -117,13 +125,24 @@ const ProfTaskManagement = () => {
                             }}/>
                         </label>
                         <label htmlFor="" className='proftaskmanagement__label'>
-                            <span className='submit__spanStyle'>Submission Date</span>
+                            <span className='submit__spanStyle'>Select Student</span>
                             <input type="text" id="proftaskmanagementdate" className='proftaskmanagement__input' placeholder='Click to Select student' onClick={toggleDropDown} value={selectedName} onChange={(e)=>{
                                 setSelectedName(selectedName)
                             }}/>
                             <div className="dropdown" ref={dropDownref}>
                                 {
                                     studentList.map((student, index) => <p className='dropdown__item' key={student.id} id={student.id} onClick={() => { setSelectedValue(student.id);setSelectedName(student.student_name); toggleDropDown() }}>{student.student_name}</p>)
+                                }
+                            </div>
+                        </label>
+                        <label htmlFor="" className='proftaskmanagement__label'>
+                            <span className='submit__spanStyle'>Select Priority</span>
+                            <input type="text" id="proftaskmanagementdate" className='proftaskmanagement__input' placeholder='Click to Select student' onClick={toggleDropDown2} value={priority} onChange={(e)=>{
+                                setPriority(priority)
+                            }}/>
+                            <div className="dropdown" ref={dropDownref2}>
+                                {
+                                    [1,2,3].map((priority, index) => <p className='dropdown__item' key={priority} id={priority} onClick={() => { setPriority(priority); toggleDropDown2() }}>{priority}</p>)
                                 }
                             </div>
                         </label>
