@@ -3,10 +3,14 @@ import Navbar from '../../universalComponents/Navbar/Navbar'
 import './TaskManagement.css'
 import SidebarDetail from '../../universalComponents/SidebarDetail/SidebarDetail'
 import Task from '../../universalComponents/IndividualTask/Task'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
+import { setCompleted } from '../../../features/tasks/taskSlice'
 const TaskManagement = () => {
     const loggedInStudent = useSelector((state) => state.userData)
+    const isChanged = useSelector((state) => state.taskData.statuschanged)
+    const dispatch = useDispatch();
+
     const menuItems = [
         {
             text: "Home",
@@ -29,20 +33,21 @@ const TaskManagement = () => {
             link: "/logout"
         }
     ]
-
+    
     const [allTasks, setallTasks] = useState([]);
     useEffect(() => {
         const api_url = process.env.REACT_APP_API_URL;
-        // console.log(userId);
+        console.log(isChanged);
         axios.get(api_url + '/getStudentTasks', {
             params: {
                 "id": loggedInStudent.id
             }
         }).then((response) => {
             setallTasks(response.data.tasks)
-            // console.log(allTasks);
+            dispatch(setCompleted({status:false}))
+
         });
-    }, [])
+    }, [isChanged])
     return (
         <div className='taskmanagement'>
             <Navbar items={menuItems.reverse()} />
@@ -56,10 +61,9 @@ const TaskManagement = () => {
                     <div className="taskmanagement__taskList">
 
                         {
-                            allTasks.map((deadline, index) => !deadline.task_status && <Task title={deadline.task_title} deadline={deadline.task_deadline} priority={deadline.task_priority} description={deadline.task_description} id={index} />)
+                            allTasks.map((deadline, index) => !deadline.task_status && <Task title={deadline.task_title} deadline={deadline.task_deadline} priority={deadline.task_priority} description={deadline.task_description} id={deadline.id} />)
                         }
                     </div>
-
                 </div>
                 <div className='studentdashboard__deadline'>
                     <div className='studentdashboard__secondaryTitle'>

@@ -76,11 +76,13 @@ export const taskSlice = createSlice({
                 priority:"High",
                 status:true
             }
-        ]
+        ],
+        statuschanged:false
     },
     reducers:{
         setCompleted:(state,action)=>{
-            state.Tasks[action.payload.id].status=true
+            // state.Tasks[action.payload.id].status=true
+            state.statuschanged = action.payload.status
         },
         addTask:(state,action)=>{
             state.Tasks.push(
