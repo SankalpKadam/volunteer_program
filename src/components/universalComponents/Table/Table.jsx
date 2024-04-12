@@ -13,15 +13,17 @@ const Table = ({heading, rows}) => {
     linkto="detailed"
   }
   else{
+    console.log(rows);
     linkto = "reportviewer"
   }
+  // console.log(rows);
   return (
     <div className='table'>
       <div className='table__header'>
         {heading}
       </div>
       {
-        rows.map((row, index) => !row.status && <Link className={clases} key={index} to={linkto}>{row.task_title ? row.task_title : row}</Link>)
+        rows.map((row, index) => !row.status && <Link className={clases} key={index} to={row.report_path?process.env.REACT_APP_API_URL+'/'+row.report_path:(heading.toLowerCase()=="task list" && `tasks/${row.id}`)}>{row.task_title ? row.task_title : row.title}{row.student_name ?row.student_name: null}</Link>)
       }
     </div>
   )

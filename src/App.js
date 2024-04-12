@@ -52,16 +52,20 @@ function App() {
       <Route path='/professorhome'>
         <Route index element={<ProfessorHome/>}/>
         <Route path='report' element={<ProfessorReports/>}/>
-        <Route path='tasks' element={<ProfessorTaskManagement/>}/>
+        <Route path='tasks' >
+          <Route index element={<ProfessorTaskManagement/>}/>
+        <Route path=':id' element={<TaskDetailed/>}/>
+
+        </Route>
         <Route path='recommend' element={<ProfessorRecommendations/>}/>
         <Route path='aicheck' element={<AIReport/>}/>
         <Route path='reportviewer' element={<ReportViewerPage/>}/>
-        <Route path='detailed' element={<TaskDetailed/>}/>
 
       </Route>
       <Route path='/logout'>
         <Route index element={<Logout/>}/>
       </Route>
+      <Route path='*' element={<div>Not found</div>}/>
     </Routes>
   );
 }
