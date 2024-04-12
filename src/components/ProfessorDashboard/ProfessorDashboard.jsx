@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../universalComponents/Navbar/Navbar'
 import './ProfessorDashboard.css'
 import Table from '../universalComponents/Table/Table'
 import { useSelector } from 'react-redux'
+import axios from 'axios'
 const ProfessorDashboard = () => {
-    const allTasks = useSelector((state)=>state.taskData.Tasks)
+    const [allTasks, setAllTasks] = useState([]);
+    const [allStudents, setAllStudent] = useState([]);
+    const [allReports, setAllReport] = useState([]);
+    const loggedInProfessor = useSelector((state)=>state.userData) 
     const menuItems = [
         {
             text: "Home",
@@ -27,6 +31,24 @@ const ProfessorDashboard = () => {
             link: "/logout"
         }
     ]
+    useEffect(()=>{
+        const api_url = process.env.REACT_APP_API_URL;
+        axios.get(api_url+'/getProfessorTasks',{
+            params:{
+                'id':loggedInProfessor.id
+            }
+        }).then((response)=>setAllTasks(response.data.tasks))
+        axios.get(api_url+"/volunteerstudents",{
+            params:{
+               'id':loggedInProfessor.id 
+            }
+        }).then((response)=>setAllStudent(response.data.students));
+        axios.get(api_url+"/getreports",{
+            params:{
+               'id':loggedInProfessor.id 
+            }
+        }).then((response)=>setAllReport(response.data.reports));
+    },[])
     return (
         <div className='professordashboard'>
             <Navbar items={menuItems.reverse()} />
@@ -42,16 +64,15 @@ const ProfessorDashboard = () => {
                     </div>
                     <div className="professordashboard__tables">
                         <div className="professordashboard__table1">
-
                             <Table heading="Task List" rows={allTasks} />
                         </div>
                         <div className="professordashboard__table1">
 
-                            <Table heading="Students" rows={["Sankalp Kadam", "Purva Ingle", "Neeharika Kattragadda", "Rajeswari Jeevanrao", "Nagendrababu Kalyanapu"]} />
+                            <Table heading="Students" rows={allStudents} />
                         </div>
                         <div className="professordashboard__table1">
 
-                            <Table heading="Reports" rows={[{title:"Report 1",link:"/professorhome/reportviewer"}, {title:"Report 2",link:"/professorhome/reportviewer"}, {title:"Report 3",link:"/professorhome/reportviewer"}, {title:"Report 4",link:"/professorhome/reportviewer"}]} />
+                            <Table heading="Reports" rows={allReports} />
                         </div>
                     </div>
                 </div>
