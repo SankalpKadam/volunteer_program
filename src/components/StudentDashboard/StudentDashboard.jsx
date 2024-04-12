@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../universalComponents/Navbar/Navbar'
 import './StudentDashboard.css'
 import Table from '../universalComponents/Table/Table'
 import SidebarDetail from '../universalComponents/SidebarDetail/SidebarDetail'
+import axios from 'axios'
 import { useSelector } from 'react-redux'
 const StudentDashboard = () => {
+    const loggedInStudent = useSelector((state) => state.userData)
     const menuItems = [
         {
             text: "Home",
@@ -27,19 +29,29 @@ const StudentDashboard = () => {
             link: "/logout"
         }
     ]
-    const allTasks = useSelector((state) => state.taskData.Tasks)
-
+    const [allTasks, setallTasks] = useState([]);
+    useEffect(() => {
+        const api_url = process.env.REACT_APP_API_URL;
+        // console.log(userId);
+        axios.get(api_url + '/getStudentTasks', {
+            params: {
+                "id": loggedInStudent.id
+            }
+        }).then((response) => {
+            setallTasks(response.data.tasks)
+            // console.log(allTasks);
+        });
+    }, [])
     return (
         <div className='studentdashboard'>
             <Navbar items={menuItems.reverse()} />
             <div className='studentdashboard__data'>
                 <div className='studentdashboard__metrics'>
                     <div className="studentdashboard__title">
-                        Welcome to the student portal
+                        Welcome {loggedInStudent.username} to the student portal
                     </div>
                     <div className="studentdashboard__welcometext">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta harum animi voluptatem quod ipsa. Similique maxime, soluta suscipit architecto asperiores voluptatibus nisi vitae corrupti error, dicta velit enim est nostrum!
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident consequatur maiores esse. Nemo asperiores repudiandae ut, excepturi repellat cumque impedit itaque ipsa, illum dolor vitae nisi recusandae sit veritatis voluptas?
+                        This is the feedback on your recent report
                     </div>
                     <div className="studentdashboard__secondaryTitle">
                         Progress
@@ -79,7 +91,7 @@ const StudentDashboard = () => {
                     <div className="taskmanagement__taskList">
 
                         {
-                            allTasks.map((deadline, index) => !deadline.status && <SidebarDetail title={deadline.title} secondaryDetail={deadline.deadline} key={index} link={"/studenthome/detailed"} />)
+                            allTasks.map((deadline, index) => !deadline.status && <SidebarDetail title={deadline.task_title} secondaryDetail={deadline.task_deadline} key={deadline.id} link={"/studenthome/detailed"} />)
                         }
                     </div>
                 </div>
