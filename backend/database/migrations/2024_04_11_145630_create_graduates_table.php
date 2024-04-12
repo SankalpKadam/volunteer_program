@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('student_email')->unique();
             $table->string('student_password');
             $table->string('student_phone_number')->unique();
+            $table->integer('student_progress');
+            $table->integer('student_hours_worked');
             // $table->unsignedBigInteger('professor_id');
             // $table->foreign('professor_id')->references('id')->on('professors')->onDelete('cascade');
             $table->foreignId('professor_id')->constrained()->onDelete('cascade');

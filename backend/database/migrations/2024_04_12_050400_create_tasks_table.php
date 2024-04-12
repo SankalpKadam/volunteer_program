@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('task_description');
             $table->date('task_deadline');
             $table->date('task_startdate');
+            $table->integer('task_status');
+            $table->integer('task_priority');
             $table->foreignId('graduate_id')->constrained()->onDelete('cascade');
             $table->foreignId('professor_id')->constrained()->onDelete('cascade');
             // $table->timestamps();
