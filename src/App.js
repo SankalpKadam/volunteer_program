@@ -25,47 +25,49 @@ import ReportViewerPage from './pages/ReportViewerPage';
 
 
 function App() {
-  const isLoggedIn = useSelector((state)=>state.loginUser.loggedIn);
+  const isLoggedIn = useSelector((state) => state.loginUser.loggedIn);
   const navigate = useNavigate();
-  useEffect(()=>{
-    if(!isLoggedIn){
+  useEffect(() => {
+    if (!isLoggedIn) {
       navigate("/")
     }
-  },[isLoggedIn])
+  }, [isLoggedIn])
   return (
     <Routes>
-      <Route path='/' element={<Homepage/>}/>
-      <Route path='/about' element={<About/>}/>
-      <Route path='/contact' element={<Contact/>}/>
-      <Route path='/services' element={<Services/>}/>
-      <Route path='/login' element={<Login/>}/>
-      <Route path='/register' element={<Register/>}/>
-      <Route path='/forgotpasswd' element={<Forgotpassword/>}/>
+      <Route path='/' element={<Homepage />} />
+      <Route path='/about' element={<About />} />
+      <Route path='/contact' element={<Contact />} />
+      <Route path='/services' element={<Services />} />
+      <Route path='/login' element={<Login />} />
+      <Route path='/register' element={<Register />} />
+      <Route path='/forgotpasswd' element={<Forgotpassword />} />
       <Route path='/studenthome' >
-        <Route index element={<StudentHome/>}/>
-        <Route path='calendar' element={<Calendar/>}/>
-        <Route path='submitreport' element={<ReportSubmission/>}/>
-        <Route path='tasks' element={<StudentTaskManagement/>}/>
-        <Route path='detailed' element={<TaskDetailed/>}/>
+        <Route index element={<StudentHome />} />
+        <Route path='calendar' element={<Calendar />} />
+        <Route path='submitreport' element={<ReportSubmission />} />
+        <Route path='tasks' >
+          <Route index element={<StudentTaskManagement />} />
+          <Route path=':id' element={<TaskDetailed />} />
+        </Route>
         {/* Remaining detail task page */}
       </Route>
       <Route path='/professorhome'>
-        <Route index element={<ProfessorHome/>}/>
-        <Route path='report' element={<ProfessorReports/>}/>
+        <Route index element={<ProfessorHome />} />
+        <Route path='report' element={<ProfessorReports />} />
         <Route path='tasks' >
-          <Route index element={<ProfessorTaskManagement/>}/>
-        <Route path=':id' element={<TaskDetailed/>}/>
+          <Route index element={<ProfessorTaskManagement />} />
+          <Route path=':id' element={<TaskDetailed />} />
 
         </Route>
-        <Route path='recommend' element={<ProfessorRecommendations/>}/>
-        <Route path='aicheck' element={<AIReport/>}/>
-        <Route path='reportviewer' element={<ReportViewerPage/>}/>
+        <Route path='recommend' element={<ProfessorRecommendations />} />
+        <Route path='aicheck' element={<AIReport />} />
+        <Route path='reportviewer' element={<ReportViewerPage />} />
 
       </Route>
       <Route path='/logout'>
-        <Route index element={<Logout/>}/>
+        <Route index element={<Logout />} />
       </Route>
-      <Route path='*' element={<div>Not found</div>}/>
+      <Route path='*' element={<div>Not found</div>} />
     </Routes>
   );
 }
