@@ -61,7 +61,8 @@ const LoginPage = () => {
               email:response.data.userInfo.student_email,
               password:response.data.userInfo.student_password,
               username:response.data.userInfo.student_name,
-              graduationDate:response.data.userInfo.student_graduation_date
+              graduationDate:response.data.userInfo.student_graduation_date,
+              id:response.data.userInfo.id
             }))
           }
         })
