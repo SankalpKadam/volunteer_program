@@ -28,6 +28,7 @@ Route::post('/savereport',[ReportController::class,'saveReport']);
 Route::get('/getreports',[ReportController::class,'getReports']);
 Route::get('/getsinglereport',[ReportController::class,'getReport']);
 Route::post('/feedback',[ReportController::class,'savefeedback']);
+Route::get('/getfeedback',[ReportController::class,'getFeedback']);
 
 
 #Miscellaneous routes
