@@ -33,11 +33,10 @@ const TaskManagement = () => {
             link: "/logout"
         }
     ]
-    
+
     const [allTasks, setallTasks] = useState([]);
     useEffect(() => {
         const api_url = process.env.REACT_APP_API_URL;
-        console.log(isChanged);
         axios.get(api_url + '/getStudentTasks', {
             params: {
                 "id": loggedInStudent.id
