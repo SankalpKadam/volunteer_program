@@ -8,18 +8,24 @@ export const authUserSlice = createSlice({
         type:"",
         username:"",
         graduationDate:"",
-
+        id:""
     },
     reducers:{
         setAuthUser:(state,action)=>{
             state.type = action.payload.type;
             state.email = action.payload.email;
             state.password = action.payload.password;
+            state.username = action.payload.username;
+            state.graduationDate = action.payload.graduationDate;
+            state.id = action.payload.id;
         },
         removeAuthUser:(state)=>{
             state.type = "";
             state.email = "";
             state.password="";
+            state.username="";
+            state.graduationDate="";
+            state.id=""
         }
     }
 })
