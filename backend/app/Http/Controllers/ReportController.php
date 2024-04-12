@@ -91,4 +91,13 @@ class ReportController extends Controller
             "message"=>"Feedback saved"
         ]);
     }
+
+    public function getFeedback(Request $request){
+        \Log::info(json_encode($request->all()));
+        $report = Reports::where('graduate_id',$request->input('id'))->get()[0];
+        return response()->json([
+            'status'=>200,
+            'feedback'=>$report->report__feedback
+        ]);
+    }
 }
