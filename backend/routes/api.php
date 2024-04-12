@@ -18,10 +18,17 @@ Route::post('/professorlogin',[ProfessorController::class, 'login']);
 
 #Routes to work with Tasks
 Route::get('/getStudentTasks',[TaskController::class,'getStudentTasks']);
+Route::get('/getProfessorTasks',[TaskController::class,'getProfessorTasks']);
+Route::get('/getTask',[TaskController::class,'getTask']);
 Route::post('/savetask',[TaskController::class,'saveTask']);
 Route::post('/updatetaskstatus',[TaskController::class,'updatestatus']);
 
 #Routes to work with Report
 Route::post('/savereport',[ReportController::class,'saveReport']);
+Route::get('/getreports',[ReportController::class,'getReports']);
+
+
+
+
 #Miscellaneous routes
 Route::get('/volunteerstudents',[ProfessorController::class,'getstudents']);
