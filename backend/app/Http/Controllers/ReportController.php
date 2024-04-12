@@ -50,4 +50,27 @@ class ReportController extends Controller
             'reports'=>$reports
         ]);
     }
+
+    public function getReport(Request $request){
+        \Log::info(json_encode($request->all()));
+        $report = Reports::find($request->input('id'));
+        $reports = [];
+        $name = Graduates::find($report->graduate_id);
+         $final = [
+             "accomplishments"=>$report->accomplishments,
+             "content"=>$report->content,
+             "graduate_id"=>$report->graduate_id,
+             "id"=>$report->id,
+             "justification"=>$report->justification,
+             "professor_id"=>$report->professor_id,
+             "report_path"=>$report->report_path,
+             "submission_date"=>$report->submission_date,
+             "title"=>$name->student_name
+         ];
+         array_push($reports,$final);
+        return response()->json([
+            "status"=>200,
+            'reports'=>$reports
+        ]);
+    }
 }

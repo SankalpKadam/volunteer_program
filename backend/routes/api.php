@@ -26,6 +26,7 @@ Route::post('/updatetaskstatus',[TaskController::class,'updatestatus']);
 #Routes to work with Report
 Route::post('/savereport',[ReportController::class,'saveReport']);
 Route::get('/getreports',[ReportController::class,'getReports']);
+Route::get('/getsinglereport',[ReportController::class,'getReport']);
 
 
 
