@@ -21,9 +21,9 @@ class TaskController extends Controller
         $tasks->task_title = $request->input('title');
         $tasks->task_description = $request->input('description');
         $tasks->task_deadline = $request->input('deadline');
-        $tasks->task_start = now();
-        $tasks->task_graduate_id = 1;
-        $tasks->task_professor_id = 1;
+        $tasks->task_startdate = now();
+        $tasks->graduate_id = 1;
+        $tasks->professor_id = 1;
         $tasks->save();
         return response()->json([
             'status'=>200,
