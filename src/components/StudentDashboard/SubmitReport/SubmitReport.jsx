@@ -2,12 +2,15 @@
 import React, { useState } from 'react'
 import Navbar from '../../universalComponents/Navbar/Navbar'
 import './SubmitReport.css'
+import axios from 'axios'
+import { useSelector } from 'react-redux'
 const SubmitReport = () => {
     const [summary, setSummary]=useState("");
     const [accomplishments, setAccomplishments]=useState("");
     const [justificationOfHours, setJustificationOfHours]=useState("");
     const [submissiondate, setDate] = useState(`${year}-${month}-${date}`);
-    const [fileUpload, setFileUpload] = useState(false);
+    const [fileUpload, setFileUpload] = useState(null);
+    const loggedInStudent = useSelector((state)=>state.userData);
     const menuItems = [
         {
             text: "Home",
@@ -44,7 +47,18 @@ const SubmitReport = () => {
 
     const submitReport = (e)=>{
         e.preventDefault();
+        console.log(e);
         if (summary && justificationOfHours && submissiondate && accomplishments &&fileUpload){
+            const api_url = process.env.REACT_APP_API_URL;
+            const formData = new FormData();
+            formData.append('file',fileUpload)
+            formData.append('content',summary)
+            formData.append('accomplishments',accomplishments)
+            formData.append('justification', justificationOfHours)
+            formData.append('graduate_id',loggedInStudent.id)
+            axios.post(api_url+'/savereport',formData,{headers:{
+                "Content-Type":"multipart/form-data",
+            }}).then((response)=>console.log(response)).catch((err)=>console.log(err));
             setAccomplishments("");
             setDate(`${year}-${month}-${date}`);
             setFileUpload(false)
@@ -84,7 +98,9 @@ const SubmitReport = () => {
                             </label>
                             <label htmlFor="" className='submitreport__label'>
                                 <span className='spanStyle'>Report</span>
-                                <input type="file" name="report" id="report" accept='.pdf' className='submitreport__fileInput' onChange={(e)=>setFileUpload(true)}/>
+                                <input type="file" name="report" id="report" accept='.pdf' className='submitreport__fileInput' onChange={(e)=>{
+                                    
+                                    setFileUpload(e.target.files[0])}}/>
                             </label>
                         </div>
                         <div className="submitreport__row">
