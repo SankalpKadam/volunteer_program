@@ -70,7 +70,7 @@ const TaskManagement = () => {
                     </div>
                     <div className="taskmanagement__taskList">
                         {
-                            allTasks.map((deadline, index) => deadline.task_status ? <SidebarDetail title={deadline.task_title} secondaryDetail={deadline.task_deadline} description={deadline.task_description.slice(0,50) + "...."} key={index} link={"/studenthome/detailed"} />:null)
+                            allTasks.map((deadline, index) => deadline.task_status ? <SidebarDetail title={deadline.task_title} secondaryDetail={deadline.task_deadline} description={deadline.task_description.slice(0,50) + "...."} key={index} link={`${deadline.id}`} />:null)
                         }
                     </div>
                 </div>
