@@ -12,9 +12,9 @@ const ProfTaskManagement = () => {
     const [selectedName, setSelectedName] = useState("Click to select student");
     const [taskDescription, setTaskDescription] = useState("");
     const [submissionDate, setSubmissionDate] = useState("")
-    
+    const [allTasks, setAllTasks] = useState([]);
+    const loggedInProfessor = useSelector((state)=>state.userData);
     const dropDownref = useRef();
-    const allTasks = useSelector((state)=>state.taskData.Tasks);
     const dispatch = useDispatch();
 
     function toggleDropDown(params) {
@@ -84,6 +84,11 @@ const ProfTaskManagement = () => {
         axios.get(process.env.REACT_APP_API_URL+'/volunteerstudents').then((response)=>{
             setStudentList(response.data.students);
         })
+        axios.get(process.env.REACT_APP_API_URL+'/getProfessorTasks',{params:{
+            'id':loggedInProfessor.id
+        }}).then((response)=>{
+            setAllTasks(response.data.tasks);
+        })
     },[])
     return (
         <div className='taskmanagement'>
@@ -131,9 +136,9 @@ const ProfTaskManagement = () => {
                         Assigned Tasks
                     </div>
                     <div className="taskmanagement__taskList">
-
+                                {console.log(allTasks)}
                     {
-                        allTasks.map((deadline, index) => <SidebarDetail title={deadline.title} secondaryDetail={deadline.deadline} description={deadline.description.slice(0,50)+"..."} key={index} link={"/professorhome/detailed"}/>)
+                        allTasks.map((deadline, index) => <SidebarDetail title={deadline.task_title} secondaryDetail={deadline.task_deadline} description={deadline.task_description.slice(0,50)+"..."} key={index} link={`${deadline.id}`}/>)
                     }
                     </div>
                 </div>
