@@ -30,6 +30,7 @@ const StudentDashboard = () => {
         }
     ]
     const [allTasks, setallTasks] = useState([]);
+    const [feedback, setFeedback] = useState("")
     useEffect(() => {
         const api_url = process.env.REACT_APP_API_URL;
         // console.log(userId);
@@ -39,6 +40,14 @@ const StudentDashboard = () => {
             }
         }).then((response) => {
             setallTasks(response.data.tasks)
+            // console.log(allTasks);
+        });
+        axios.get(api_url + '/getfeedback', {
+            params: {
+                "id": loggedInStudent.id
+            }
+        }).then((response) => {
+            setFeedback(response.data.feedback)
             // console.log(allTasks);
         });
     }, [])
@@ -51,7 +60,7 @@ const StudentDashboard = () => {
                         Welcome {loggedInStudent.username} to the student portal
                     </div>
                     <div className="studentdashboard__welcometext">
-                        This is the feedback on your recent report
+                        This is the feedback on your recent report - {feedback}
                     </div>
                     <div className="studentdashboard__secondaryTitle">
                         Progress
@@ -91,7 +100,7 @@ const StudentDashboard = () => {
                     <div className="taskmanagement__taskList">
 
                         {
-                            allTasks.map((deadline, index) => !deadline.status && <SidebarDetail title={deadline.task_title} secondaryDetail={deadline.task_deadline} key={deadline.id} link={"/studenthome/detailed"} />)
+                            allTasks.map((deadline, index) => !deadline.status && <SidebarDetail title={deadline.task_title} secondaryDetail={deadline.task_deadline} key={deadline.id} link={`tasks/${deadline.id}`} />)
                         }
                     </div>
                 </div>
