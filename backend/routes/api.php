@@ -12,3 +12,4 @@ Route::get('/user', function (Request $request) {
 Route::post('/register',[GraduatesController::class, 'register']);
 Route::post('/login',[GraduatesController::class, 'login']);
 Route::post('/professorlogin',[ProfessorController::class, 'login']);
+Route::get('/volunteerstudents',[ProfessorController::class,'getstudents']);
