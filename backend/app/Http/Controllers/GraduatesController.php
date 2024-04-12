@@ -17,6 +17,7 @@ class GraduatesController extends Controller
         $graduate->student_email = $request->input('student_email');
         $graduate->student_password = $request->input('student_password');
         $graduate->student_phone_number = $request->input('student_phone_number');
+        $graduate->professor_id = 1;
         try {
             //code...
             $graduate->save();
@@ -24,7 +25,8 @@ class GraduatesController extends Controller
             //throw $th;
             return response()->json([
                 'status'=>400,
-                'message'=>"Email or phone number already exists"
+                'message'=>"Email or phone number already exists",
+                'error'=>$th
             ]);
         }
         $data = [
@@ -49,8 +51,8 @@ class GraduatesController extends Controller
 
     public function login(Request $request) {
         \Log::info(json_encode($request->all()));
-        $users = Graduates::where('student_email',$request->input('student_email'))->first();
-        if (!$users || !($users->student_password==$request->input("student_password"))){
+        $users = Graduates::where('student_email',$request->input('email'))->first();
+        if (!$users || !($users->student_password==$request->input("password"))){
             return response()->json([
                 'status'=>500,
                 'message'=>"This combination of email and password does not exist"

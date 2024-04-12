@@ -48,8 +48,8 @@ const LoginPage = () => {
         console.log(api_url);
         axios.post(api_url,{
           
-          'student_email':userEmail,
-          'student_password':userPasswd
+          'email':userEmail,
+          'password':userPasswd
         }).then((response)=>{
           console.log(response);
           if (response.data.status != 200){
