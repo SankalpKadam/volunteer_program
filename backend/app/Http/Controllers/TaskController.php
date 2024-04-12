@@ -22,7 +22,7 @@ class TaskController extends Controller
         $tasks->task_description = $request->input('description');
         $tasks->task_deadline = $request->input('deadline');
         $tasks->task_startdate = now();
-        $tasks->graduate_id = 1;
+        $tasks->graduate_id = $request->input('graduate_id');
         $tasks->professor_id = 1;
         $tasks->save();
         return response()->json([

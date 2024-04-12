@@ -27,6 +27,9 @@ class ProfessorController extends Controller
     public function getstudents(Request $request){
         \Log::info(json_encode($request->all()));
         $users = Graduates::where('professor_id',1)->get();
-        return $users;
+        return response()->json([
+            'status'=>200,
+            'students'=>$users
+        ]);
     }
 }

@@ -1,13 +1,15 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Navbar from '../../universalComponents/Navbar/Navbar'
 import SidebarDetail from '../../universalComponents/SidebarDetail/SidebarDetail'
 import Task from '../../universalComponents/IndividualTask/Task'
 import './ProfTaskManagement.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { addTask } from '../../../features/tasks/taskSlice'
+import axios from 'axios'
 const ProfTaskManagement = () => {
     const [selectedValue, setSelectedValue] = useState("Click to select student");
     const [taskTitle, setTaskTitle] = useState("");
+    const [selectedName, setSelectedName] = useState("Click to select student");
     const [taskDescription, setTaskDescription] = useState("");
     const [submissionDate, setSubmissionDate] = useState("")
     
@@ -21,13 +23,28 @@ const ProfTaskManagement = () => {
     function addNewTask(e) {
         e.preventDefault();
         if (selectedValue!="Click to select student" && taskTitle && taskDescription && submissionDate) {
-            dispatch(addTask({
-                id:allTasks.length,
-                title:taskTitle,
-                description:taskDescription,
-                deadline:submissionDate,
-            }))
+            const api_url = process.env.REACT_APP_API_URL+'/savetask';
+            axios.post(api_url,{
+                'title':taskTitle,
+                'description':taskDescription,
+                'deadline':submissionDate,
+                'graduate_id':selectedValue
+            }).then((response)=>{
+                console.log(response.data);
+                if(response.data.status != 200){
+                    alert("New task was not added")
+                }else{
+
+                    dispatch(addTask({
+                        id:allTasks.length,
+                        title:taskTitle,
+                        description:taskDescription,
+                        deadline:submissionDate,
+                    }))
+                }
+            })
             setSelectedValue("Click to select student")
+            setSelectedName("Click to select student")
             setTaskDescription("")
             setTaskTitle("")
             setSubmissionDate("")
@@ -59,9 +76,15 @@ const ProfTaskManagement = () => {
         }
     ]
     
-    const studentList = [
-        "Sankalp Kadam", "Nagendrababu Kalyanapu", "Purva Ingle", "Rajeswari Jeevanrao", "Neeharika Katragadda"
-    ]
+    // const studentList = [
+    //     "Sankalp Kadam", "Nagendrababu Kalyanapu", "Purva Ingle", "Rajeswari Jeevanrao", "Neeharika Katragadda"
+    // ]
+    const [studentList, setStudentList] = useState([]);
+    useEffect(()=>{
+        axios.get(process.env.REACT_APP_API_URL+'/volunteerstudents').then((response)=>{
+            setStudentList(response.data.students);
+        })
+    },[])
     return (
         <div className='taskmanagement'>
             <Navbar items={menuItems.reverse()} />
@@ -83,18 +106,19 @@ const ProfTaskManagement = () => {
                         </label>
                         <label htmlFor="" className='proftaskmanagement__label'>
                             <span className='submit__spanStyle'>Submission Date</span>
-                            <input type="date" id="proftaskmanagementdate" className='proftaskmanagement__input' onChange={(e)=>{
+                            <input type="date" id="proftaskmanagementdate" className='proftaskmanagement__input'
+                            pattern="\d{4}-\d{2}-\d{2}" onChange={(e)=>{
                                 setSubmissionDate(e.target.value);
                             }}/>
                         </label>
                         <label htmlFor="" className='proftaskmanagement__label'>
                             <span className='submit__spanStyle'>Submission Date</span>
-                            <input type="text" id="proftaskmanagementdate" className='proftaskmanagement__input' placeholder='Click to Select student' onClick={toggleDropDown} value={selectedValue} onChange={(e)=>{
-                                setSelectedValue(selectedValue)
+                            <input type="text" id="proftaskmanagementdate" className='proftaskmanagement__input' placeholder='Click to Select student' onClick={toggleDropDown} value={selectedName} onChange={(e)=>{
+                                setSelectedName(selectedName)
                             }}/>
                             <div className="dropdown" ref={dropDownref}>
                                 {
-                                    studentList.map((student, index) => <p className='dropdown__item' key={index} id={student} onClick={() => { setSelectedValue(student); toggleDropDown() }}>{student}</p>)
+                                    studentList.map((student, index) => <p className='dropdown__item' key={student.id} id={student.id} onClick={() => { setSelectedValue(student.id);setSelectedName(student.student_name); toggleDropDown() }}>{student.student_name}</p>)
                                 }
                             </div>
                         </label>
