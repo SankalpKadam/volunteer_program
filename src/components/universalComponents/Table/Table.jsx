@@ -21,7 +21,7 @@ const Table = ({heading, rows}) => {
         {heading}
       </div>
       {
-        rows.map((row, index) => !row.status && <Link className={clases} key={index} to={linkto}>{row.title ? row.title : row}</Link>)
+        rows.map((row, index) => !row.status && <Link className={clases} key={index} to={linkto}>{row.task_title ? row.task_title : row}</Link>)
       }
     </div>
   )
