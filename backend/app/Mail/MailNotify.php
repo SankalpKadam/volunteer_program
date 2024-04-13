@@ -14,6 +14,7 @@ class MailNotify extends Mailable
 {
     use Queueable, SerializesModels;
     private $data = [];
+    // private $pdf =  []
     /**
      * Create a new message instance.
      */
@@ -54,6 +55,11 @@ class MailNotify extends Mailable
      */
     public function attachments(): array
     {
-        return [];
+        if ($this->data['pdf']) {
+            # code...
+            return [
+                Attachment::fromData(fn () => $this->data['pdf'],"Recommendation.pdf")->withMime('application/pdf'),
+            ];
+        }
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\GraduatesController;
 use App\Http\Controllers\ProfessorController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\RecommendationController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -30,6 +31,8 @@ Route::get('/getsinglereport',[ReportController::class,'getReport']);
 Route::post('/feedback',[ReportController::class,'savefeedback']);
 Route::get('/getfeedback',[ReportController::class,'getFeedback']);
 
+#Routes to work with recommendation
+Route::get('/recommend',[RecommendationController::class,'saveRecommendation']);
 
 #Miscellaneous routes
 Route::get('/volunteerstudents',[ProfessorController::class,'getstudents']);

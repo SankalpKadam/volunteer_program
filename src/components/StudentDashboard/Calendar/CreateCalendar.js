@@ -1,6 +1,6 @@
 const createCalendarArray = (currentDay) =>{
     let daysToAddToCalendar = [];
-    console.log(new Date(currentDay.getFullYear(), currentDay.getMonth(), 1));
+    // console.log(new Date(currentDay.getFullYear(), currentDay.getMonth(), 1));
     let firstDayOfMonth = new Date(currentDay.getFullYear(), currentDay.getMonth(), 1);
     let firstWeekday = firstDayOfMonth.getDay();
     for (let i = 0; i < 42; i++) {
