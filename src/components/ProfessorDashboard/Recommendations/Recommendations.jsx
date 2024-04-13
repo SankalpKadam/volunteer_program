@@ -1,11 +1,14 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Navbar from '../../universalComponents/Navbar/Navbar'
 import './Recommendations.css'
+import axios from 'axios'
+import { useSelector } from 'react-redux'
 const Recommendations = () => {
     const [selectedValue, setSelectedValue] = useState("Click to select student");
     const [professorName, setProfessorName] = useState("");
     const [recommendationText, setRecommendationText] = useState("");
-
+    const [selectedId, setSelectedId] = useState(0);
+    const loggedInProfessor = useSelector((state)=>state.userData)
     const dropDownref = useRef();
     function toggleDropDown(params) {
         dropDownref.current.classList.toggle("showDropDown")
@@ -13,9 +16,26 @@ const Recommendations = () => {
     function generateLetter(e) {
         e.preventDefault();
         if (selectedValue!="Click to select student" && professorName && recommendationText) {
+            axios.post(process.env.REACT_APP_API_URL+'/recommend',{
+                'professor_name':professorName,
+                'graduate_id':selectedId,
+                'professor_id':loggedInProfessor.id,
+                'recommendation_text':recommendationText
+            }).then((response) => response.blob())
+            .then((blob) => {              
+            //   const file = window.URL.createObjectURL(blob);
+            const file = new Blob(
+                blob, 
+                {type: 'application/pdf'});
+                const fileURL = URL.createObjectURL(file);
+                window.open(fileURL);
+            //   const iframe = document.querySelector("iframe");
+            //   if (iframe?.src) iframe.src = file;
+            }).catch((err)=>console.log(err))
             setSelectedValue("Click to select student")
             setProfessorName("")
             setRecommendationText("")
+            setSelectedId(0)
         }
         else{
             alert("Fill all the details");
@@ -43,9 +63,12 @@ const Recommendations = () => {
             link: "/logout"
         }
     ]
-    const studentList = [
-        "Sankalp Kadam", "Nagendrababu Kalyanapu", "Purva Ingle", "Rajeswari Jeevanrao", "Neeharika Katragadda"
-    ]
+    const [studentList, setStudentList] = useState([])
+    useEffect(()=>{
+        axios.get(process.env.REACT_APP_API_URL+'/volunteerstudents').then((response)=>{
+            setStudentList(response.data.students);
+        })
+    },[])
     return (
         <div className='recommendation'>
             <Navbar items={menuItems.reverse()} />
@@ -65,7 +88,7 @@ const Recommendations = () => {
                         <input type="text" id="proftaskmanagementdate" className='proftaskmanagement__input' placeholder='Click to Select student' onClick={toggleDropDown} value={selectedValue} onChange={(e)=>setSelectedValue(e.target.value)}/>
                         <div className="dropdown" ref={dropDownref}>
                             {
-                                studentList.map((student, index) => <p className='dropdown__item' key={index} id={student} onClick={() => { setSelectedValue(student); toggleDropDown() }}>{student}</p>)
+                                studentList.map((student, index) => <p className='dropdown__item' key={index} id={student.id} onClick={() => { setSelectedId(student.id);setSelectedValue(student.student_name); toggleDropDown() }}>{student.student_name}</p>)
                             }
                         </div>
                     </label>

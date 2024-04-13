@@ -32,7 +32,7 @@ Route::post('/feedback',[ReportController::class,'savefeedback']);
 Route::get('/getfeedback',[ReportController::class,'getFeedback']);
 
 #Routes to work with recommendation
-Route::get('/recommend',[RecommendationController::class,'saveRecommendation']);
+Route::post('/recommend',[RecommendationController::class,'saveRecommendation']);
 
 #Miscellaneous routes
 Route::get('/volunteerstudents',[ProfessorController::class,'getstudents']);
