@@ -11,6 +11,7 @@ const Reports = () => {
     const [feedback, setFeedback] = useState("")
     const [openAIReport, setOpenAIReport] = useState(false)
     const currentReport = useSelector((state)=>state.taskData.currentReport);
+    const [score, setScore] = useState(0);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     function closeDialog() {
@@ -114,7 +115,31 @@ const Reports = () => {
                         Report
                     </div>
                     <button className='submitreport__submitBtn' onClick={()=>navigate("/professorhome/reportviewer")}>View Report</button>
-                    <Link className='reports__aiCheck' onClick={()=>setOpenAIReport(true)}>Do AI anti-cheating check</Link>
+                    <Link className='reports__aiCheck' onClick={()=>{
+                        setOpenAIReport(true)
+
+                    async function run(text) {
+                        try {
+                            const response = await axios.post(
+                                'https://api.sapling.ai/api/v1/aidetect',
+                                {
+                                    key: 'BHSKBQHICWRZZ9M1JOA112CX7JE7SP01',
+                                    text,
+                                },
+                            );
+                            const {status, data} = response;
+                            console.log({status});
+                            console.log(data.score*100);
+                            setScore(data.score*100)
+                        } catch (err) {
+                            const { msg } = err.response.data;
+                            console.log({err: msg});
+                        }
+                    }
+                    
+                    run(currentReport.content);
+                    }}>Do AI anti-cheating check</Link>
+                    {openAIReport && <div>There is a <b>{score}%</b> chance that this report is written using AI agents</div>}
                     <div className='reports__secondaryTitle'>
                         Feedback
                     </div>
@@ -131,10 +156,10 @@ const Reports = () => {
                     }
                 </div>
             </div>
-           {openAIReport && <div className='aireport'>
+           {/* {openAIReport && <div className='aireport'>
                     <AICheck/>
                     <button className='submitreport__submitBtn' onClick={closeDialog}>Close</button>
-            </div>}
+            </div>} */}
         </div>
     )
 }
