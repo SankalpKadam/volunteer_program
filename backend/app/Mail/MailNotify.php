@@ -55,11 +55,11 @@ class MailNotify extends Mailable
      */
     public function attachments(): array
     {
-        if ($this->data['pdf']) {
-            # code...
+        // if ($this->data['pdf']) {
+        //     # code...
             return [
-                Attachment::fromData(fn () => $this->data['pdf'],"Recommendation.pdf")->withMime('application/pdf'),
+                // Attachment::fromData(fn () => $this->data['pdf']->output(),"Recommendation.pdf")->withMime('application/pdf'),
             ];
-        }
+        // }
     }
 }
