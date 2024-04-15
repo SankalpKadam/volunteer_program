@@ -8,7 +8,7 @@ const Chat = () => {
     const isLoggedIn = useSelector((state) => state.userData);
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
-    const menuItems = [
+    const menuItems = isLoggedIn.type == "student"?[
         {
             text: "Home",
             link: "/studenthome"
@@ -32,6 +32,31 @@ const Chat = () => {
         {
             text:"Chat",
             link:"/studenthome/chat"
+        }
+    ]:[
+        {
+            text: "Home",
+            link: "/professorhome"
+        },
+        {
+            text: "Recommendations",
+            link: "/professorhome/recommend"
+        },
+        {
+            text: "Reports",
+            link: "/professorhome/report"
+        },
+        {
+            text:"Tasks",
+            link:"/professorhome/tasks"
+        },
+        {
+            text: "Logout",
+            link: "/logout"
+        },
+        {
+            text:"Chat",
+            link:"/professorhome/chat"
         }
     ]
     useEffect(()=>{

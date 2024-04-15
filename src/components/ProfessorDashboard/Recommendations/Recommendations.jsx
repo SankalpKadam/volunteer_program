@@ -61,6 +61,10 @@ const Recommendations = () => {
         {
             text: "Logout",
             link: "/logout"
+        },
+        {
+            text:"Chat",
+            link:"/professorhome/chat"
         }
     ]
     const [studentList, setStudentList] = useState([])

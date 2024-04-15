@@ -22,6 +22,10 @@ const AICheck = () => {
         {
             text: "Logout",
             link: "/logout"
+        },
+        {
+            text:"Chat",
+            link:"/professorhome/chat"
         }
     ]
     return (

@@ -81,6 +81,10 @@ const ProfTaskManagement = () => {
         {
             text: "Logout",
             link: "/logout"
+        },
+        {
+            text:"Chat",
+            link:"/professorhome/chat"
         }
     ]
     

@@ -37,6 +37,10 @@ const Reports = () => {
         {
             text: "Logout",
             link: "/logout"
+        },
+        {
+            text:"Chat",
+            link:"/professorhome/chat"
         }
     ]
     // const deadlines = [

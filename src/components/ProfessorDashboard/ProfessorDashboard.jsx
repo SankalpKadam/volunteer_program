@@ -29,6 +29,10 @@ const ProfessorDashboard = () => {
         {
             text: "Logout",
             link: "/logout"
+        },
+        {
+            text:"Chat",
+            link:"/professorhome/chat"
         }
     ]
     useEffect(()=>{
@@ -59,8 +63,7 @@ const ProfessorDashboard = () => {
                         Welcome to the Professor portal
                     </div>
                     <div className="professordashboard__welcometext">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta harum animi voluptatem quod ipsa. Similique maxime, soluta suscipit architecto asperiores voluptatibus nisi vitae corrupti error, dicta velit enim est nostrum!
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident consequatur maiores esse. Nemo asperiores repudiandae ut, excepturi repellat cumque impedit itaque ipsa, illum dolor vitae nisi recusandae sit veritatis voluptas?
+                        Hello welcome to the professor portal. Here you can assign tasks to the students, see their submitted reports, give them feedback and many more functions. Get started
                     </div>
                     <div className="professordashboard__tables">
                         <div className="professordashboard__table1">
