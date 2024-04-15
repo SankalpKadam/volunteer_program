@@ -18,9 +18,15 @@ class GraduatesController extends Controller
         $graduate->student_password = $request->input('student_password');
         $graduate->student_phone_number = $request->input('student_phone_number');
         $graduate->professor_id = 1;
+        $graduate->student_hours_worked = 10;
+        $graduate->student_progress = 15;
         try {
             //code...
             $graduate->save();
+            return response()->json([
+                        'status'=>200,
+                        'message'=>"User Registered Successfully"
+                    ]);
         } catch (\Throwable $th) {
             //throw $th;
             return response()->json([
