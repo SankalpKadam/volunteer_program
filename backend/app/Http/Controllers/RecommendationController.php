@@ -39,7 +39,7 @@ class RecommendationController extends Controller
         //             'message'=>"Mail not sent Successfully"
         //         ]);
         //     }
-        return $pdf->download('Recommendation.pdf');
+        return $pdf->stream();
         // return response()->json([
         //     'status'=>200,
         //     'message'=>"Recommendation saved successfully"
