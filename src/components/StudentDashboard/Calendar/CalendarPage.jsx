@@ -26,6 +26,10 @@ const CalendarPage = () => {
         {
             text: "Logout",
             link: "/logout"
+        },
+        {
+            text:"Chat",
+            link:"/studenthome/chat"
         }
     ]
 

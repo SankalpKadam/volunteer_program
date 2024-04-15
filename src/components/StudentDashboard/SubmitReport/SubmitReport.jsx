@@ -31,6 +31,10 @@ const SubmitReport = () => {
         {
             text: "Logout",
             link: "/logout"
+        },
+        {
+            text:"Chat",
+            link:"/studenthome/chat"
         }
     ]
     const getTodayDate = new Date();

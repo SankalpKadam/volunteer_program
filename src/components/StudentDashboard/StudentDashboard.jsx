@@ -27,6 +27,10 @@ const StudentDashboard = () => {
         {
             text: "Logout",
             link: "/logout"
+        },
+        {
+            text:"Chat",
+            link:"/studenthome/chat"
         }
     ]
     const [allTasks, setallTasks] = useState([]);

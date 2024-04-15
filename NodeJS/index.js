@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import con from './database.js';
 import cors from 'cors';
+import routes from './routes/routes.js'
 dotenv.config();
 con();
 // const express = require('express');
@@ -12,9 +13,10 @@ con();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-app.use(bodyParser.urlencoded({extended:false}))
-app.use(express.json())
+app.use(bodyParser.urlencoded({extended:true}))
+app.use(bodyParser.json())
 app.use(cors())
+app.use(routes);
 
 
 

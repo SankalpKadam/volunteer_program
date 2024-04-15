@@ -22,6 +22,7 @@ import TaskDetailed from './pages/TaskDetailed';
 import AIReport from './pages/AIReport';
 import ReportViewer from './components/ProfessorDashboard/ReportViewer/ReportViewer';
 import ReportViewerPage from './pages/ReportViewerPage';
+import ChatPage from './pages/ChatPage';
 
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
           <Route index element={<StudentTaskManagement />} />
           <Route path=':id' element={<TaskDetailed />} />
         </Route>
+        <Route path='chat' element={<ChatPage/>}/>
         {/* Remaining detail task page */}
       </Route>
       <Route path='/professorhome'>
@@ -62,7 +64,7 @@ function App() {
         <Route path='recommend' element={<ProfessorRecommendations />} />
         <Route path='aicheck' element={<AIReport />} />
         <Route path='reportviewer' element={<ReportViewerPage />} />
-
+        <Route path='chat' element={<ChatPage/>}/>
       </Route>
       <Route path='/logout'>
         <Route index element={<Logout />} />
