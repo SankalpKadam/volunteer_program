@@ -79,15 +79,15 @@ export const taskSlice = createSlice({
         ],
         statuschanged: false,
         currentReport: {
-            "accomplishments":"",
-            "content": "",
-            "graduate_id": "",
-            "id": "",
-            "justification": "",
-            "professor_id": "",
-            "report_path": "",
-            "submission_date": "",
-            "title":""
+            accomplishments:"",
+            content: "",
+            graduate_id: "",
+            id: "",
+            justification: "",
+            professor_id: "",
+            report_path: "",
+            submission_date: "",
+            title:""
         }
     },
     reducers: {
@@ -96,15 +96,15 @@ export const taskSlice = createSlice({
             state.statuschanged = action.payload.status
         },
         setCurrentReport:(state,action)=>{
-            state.currentReport.accomplishments=action.payload.accomplishments,
-            state.currentReport.content=action.payload.content
-            state.currentReport.graduate_id=action.payload.graduate_id,
-            state.currentReport.id=action.payload.id,
-            state.currentReport.justification=action.payload.justification,
-            state.currentReport.professor_id=action.payload.professor_id,
-            state.currentReport.report_path=action.payload.report_path,
-            state.currentReport.submission_date=action.payload.submission_date,
-            state.currentReport.title=action.payload.title
+            state.currentReport.accomplishments=action.payload.accomplishments;
+            state.currentReport.content=action.payload.content;
+            state.currentReport.graduate_id=action.payload.graduate_id;
+            state.currentReport.id=action.payload.id;
+            state.currentReport.justification=action.payload.justification;
+            state.currentReport.professor_id=action.payload.professor_id;
+            state.currentReport.report_path=action.payload.report_path;
+            state.currentReport.submission_date=action.payload.submission_date;
+            state.currentReport.title=action.payload.title;
 
         },
         addTask: (state, action) => {
