@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../universalComponents/Navbar/Navbar'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import './Chat.css'
 import SidebarDetail from '../universalComponents/SidebarDetail/SidebarDetail'
 import axios from 'axios'
+import { clearMessages, setMessages } from '../../features/tasks/taskSlice'
 const Chat = () => {
     const isLoggedIn = useSelector((state) => state.userData);
-    const [messages, setMessages] = useState([]);
+    const messages = useSelector((state)=>state.taskData.messages);
     const [newMessage, setNewMessage] = useState('');
+    const [studentList, setStudentList] = useState([]);
+    const dispatch = useDispatch();
     const menuItems = isLoggedIn.type == "student"?[
         {
             text: "Home",
@@ -60,14 +63,31 @@ const Chat = () => {
         }
     ]
     useEffect(()=>{
-        axios.get('http://localhost:5000/getmessages',{params:{
+        axios.get(process.env.REACT_APP_CHAT_API_URL+'getmessages',{params:{
             id:isLoggedIn.id
-        }}).then((response)=>console.log(response))
+        }}).then((response)=>{
+            if (response.status == 200) {
+                dispatch(clearMessages())
+                response.data.map((message) =>{dispatch(setMessages({message }))})
+            }
+        }).catch((err)=>console.log(err))
+        axios.get(process.env.REACT_APP_API_URL+'/volunteerstudents').then((response)=>{
+            setStudentList(response.data.students);
+        })
     },[])
     const sendMessage = () => {
         // Here you would send the new message to the backend and update the messages state
         // For simplicity, let's just add it locally
-        setMessages([...messages, { id: messages.length + 1, userId: 1, content: newMessage, timestamp: new Date().toISOString() }]);
+        // setMessages([...messages, { id: messages.length + 1, userId: 1, content: newMessage, timestamp: new Date().toISOString() }]);
+        axios.post(process.env.REACT_APP_CHAT_API_URL+'savemessage',{
+            'sender_id':isLoggedIn.id,
+            'receiver_id':2,
+            'message':newMessage
+        }).then((response)=>{
+            if (response.status == 200){
+                // dispatch(setMessages({{}}))
+            }
+        }).catch((err)=>console.log(err))
         setNewMessage('');
     };
     return (
@@ -83,9 +103,10 @@ const Chat = () => {
                     <div className="taskmanagement__taskList">
                         <div className="chatApp">
                             <div className="message-container">
+                                {console.log(messages)}
                                 {messages.map(message => (
-                                    <div key={message.id} className={`message ${message.userId === 1 ? 'sent' : 'received'}`}>
-                                        {message.content}
+                                    <div key={message.message.chatid} className={`message ${message.message.senderid === isLoggedIn.id ? 'sent' : 'received'}`}>
+                                        {message.message.text}
                                     </div>
                                 ))}
                             </div>
@@ -103,7 +124,7 @@ const Chat = () => {
                     </div>
                     <div className="taskmanagement__taskList">
                         {
-                            ["Sankalp Kadam","Purva Ingle","Rajeswari Jeevanrao"].map((deadline, index) => <SidebarDetail title={deadline}/>)
+                            studentList.map((deadline, index) => <SidebarDetail title={deadline.student_name} report={false} id={deadline.id} key={deadline.id}/>)
                         }
                     </div>
                 </div>

@@ -95,6 +95,9 @@
   .chatApp {
     display: flex;
     flex-direction: column;
+    border: 1px solid lightgray;
+    margin-top: 1rem;
+    border-radius: 10px;
     /* height: 100vh; */
     padding: 20px; /* Added padding to the whole screen */
   }
