@@ -118,7 +118,9 @@ const Reports = () => {
                     <div className="reports__secondaryTitle">
                         Report
                     </div>
-                    <button className='submitreport__submitBtn' onClick={()=>navigate("/professorhome/reportviewer")}>View Report</button>
+                    <button className='submitreport__submitBtn' onClick={()=>{
+                        window.open(process.env.REACT_APP_FILE_URL+currentReport.report_path.slice(7),'_blank').focus()
+                    }}>View Report</button>
                     <Link className='reports__aiCheck' onClick={()=>{
                         setOpenAIReport(true)
 
