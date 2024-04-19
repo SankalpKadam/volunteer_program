@@ -93,7 +93,11 @@ const ProfTaskManagement = () => {
     // ]
     const [studentList, setStudentList] = useState([]);
     useEffect(()=>{
-        axios.get(process.env.REACT_APP_API_URL+'/volunteerstudents').then((response)=>{
+        axios.get(process.env.REACT_APP_API_URL+'/volunteerstudents',{
+            params:{
+                'id':loggedInProfessor.id
+            }
+        }).then((response)=>{
             setStudentList(response.data.students);
         })
         axios.get(process.env.REACT_APP_API_URL+'/getProfessorTasks',{params:{
@@ -134,6 +138,7 @@ const ProfTaskManagement = () => {
                                 setSelectedName(selectedName)
                             }}/>
                             <div className="dropdown" ref={dropDownref}>
+                                {console.log(studentList)}
                                 {
                                     studentList.map((student, index) => <p className='dropdown__item' key={student.id} id={student.id} onClick={() => { setSelectedValue(student.id);setSelectedName(student.student_name); toggleDropDown() }}>{student.student_name}</p>)
                                 }

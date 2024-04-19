@@ -69,7 +69,11 @@ const Recommendations = () => {
     ]
     const [studentList, setStudentList] = useState([])
     useEffect(()=>{
-        axios.get(process.env.REACT_APP_API_URL+'/volunteerstudents').then((response)=>{
+        axios.get(process.env.REACT_APP_API_URL+'/volunteerstudents',{
+            params:{
+                'id':loggedInProfessor.id
+            }
+        }).then((response)=>{
             setStudentList(response.data.students);
         })
     },[])

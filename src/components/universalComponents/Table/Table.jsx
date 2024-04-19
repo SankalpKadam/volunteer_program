@@ -23,7 +23,7 @@ const Table = ({heading, rows}) => {
         {heading}
       </div>
       {
-        rows.map((row, index) => !row.status && <Link className={clases} key={index} to={row.report_path?process.env.REACT_APP_FILE_URL+'/'+row.report_path:(heading.toLowerCase()=="task list" && `tasks/${row.id}`)}>{row.task_title ? row.task_title : row.title}{row.student_name ?row.student_name: null}</Link>)
+        rows.map((row, index) => !row.status && <Link className={clases} key={index} target={row.report_path&&'_blank'} to={row.report_path?process.env.REACT_APP_FILE_URL+row.report_path.slice(7):(heading.toLowerCase()=="task list" && `tasks/${row.id}`)}>{row.task_title ? row.task_title : row.title}{row.student_name ?row.student_name: null}</Link>)
       }
     </div>
   )

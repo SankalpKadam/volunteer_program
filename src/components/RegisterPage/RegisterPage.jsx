@@ -6,6 +6,7 @@ import { Link, useAsyncError, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 const RegisterPage = () => {
     const [name, setName] = useState("");
+    const [professorName, setProfessorName] = useState("");
     const [newEmail, setNewEmail] = useState("");
     const [phonenumber, setPhoneNumber] = useState("");
     const [gradDate, setGradDate] = useState("");
@@ -22,20 +23,26 @@ const RegisterPage = () => {
                     'student_password':password,
                     'student_graduation_date':gradDate+'-10',
                     'student_email':newEmail,
-                    'student_phone_number':phonenumber
+                    'student_phone_number':phonenumber,
+                    'student_professor_id':professorName
                 }).then((response)=>{
                     if (response.data.status != 200){
                         alert('User Not added')
+                        console.log(response);
+                    }
+                    else{
+                        setConfirmPassword("")
+                        setGradDate("")
+                        setName("")
+                        setNewEmail("")
+                        setPassword("")
+                        setPhoneNumber("")
+                        setProfessorName("")
+                        alert("A verification email has been sent to you")
+                        navigate("/login")
                     }
                 })
-                setConfirmPassword("")
-                setGradDate("")
-                setName("")
-                setNewEmail("")
-                setPassword("")
-                setPhoneNumber("")
-                alert("A verification email has been sent to you")
-                navigate("/login")
+                
 
             }else{
                 alert("Password and confirm password do not match")
@@ -81,6 +88,12 @@ const RegisterPage = () => {
                             <label htmlFor="" className='registerpage__label'>
                                 <span className='spanStyle'>Confirm Password</span>
                                 <input type="password" name="" id="confirmpasswd" minLength="8" className='registerpage__input' value={confirmpassword} onChange={(e)=>setConfirmPassword(e.target.value)}/>
+                            </label>
+                        </div>
+                        <div className="registerpage__formRow">
+                            <label htmlFor="" className='registerpage__label'>
+                                <span className='spanStyle'>Professor Id</span>
+                                <input type="text" name="" pattern="[0-9]{1}" id="professorId" className='registerpage__input' value={professorName} onChange={(e)=>setProfessorName(e.target.value)}/>
                             </label>
                         </div>
                         <button className='registerpage__submitBtn' onClick={registerUser}>

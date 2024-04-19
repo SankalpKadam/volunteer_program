@@ -29,7 +29,8 @@ class ReportController extends Controller
         $path = $request->file('file')->store('public/uploads');
         $newReport->report_path = $path;
         $newReport->graduate_id = $request->input('graduate_id');
-        $newReport->professor_id = 1;
+        $graduate = Reports::where('graduate_id',$request->input('graduate_id'))->get();
+        $newReport->professor_id = $graduate->professor_id;
         \Log::info("After path store");
 
         $newReport->save();

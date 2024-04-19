@@ -17,9 +17,9 @@ class GraduatesController extends Controller
         $graduate->student_email = $request->input('student_email');
         $graduate->student_password = $request->input('student_password');
         $graduate->student_phone_number = $request->input('student_phone_number');
-        $graduate->professor_id = 1;
-        $graduate->student_hours_worked = 10;
-        $graduate->student_progress = 15;
+        $graduate->professor_id = $request->input('student_professor_id');
+        $graduate->student_hours_worked = rand(10,30);
+        $graduate->student_progress = rand(15,40);
         try {
             //code...
             $graduate->save();
