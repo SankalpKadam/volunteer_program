@@ -5,7 +5,7 @@ import SidebarDetail from '../../universalComponents/SidebarDetail/SidebarDetail
 import Task from '../../universalComponents/IndividualTask/Task'
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
-import { setCompleted } from '../../../features/tasks/taskSlice'
+import { addTask, setCompleted } from '../../../features/tasks/taskSlice'
 const TaskManagement = () => {
     const loggedInStudent = useSelector((state) => state.userData)
     const isChanged = useSelector((state) => state.taskData.statuschanged)
@@ -46,9 +46,10 @@ const TaskManagement = () => {
                 "id": loggedInStudent.id
             }
         }).then((response) => {
+
             setallTasks(response.data.tasks)
             dispatch(setCompleted({status:false}))
-
+            response.data.tasks.map((task)=>dispatch(addTask({task})))
         });
     }, [isChanged])
     return (
