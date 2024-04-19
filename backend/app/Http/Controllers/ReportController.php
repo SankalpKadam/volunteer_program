@@ -9,7 +9,9 @@ class ReportController extends Controller
 {
     public function saveReport(Request $request){
         \Log::info(json_encode($request->all()));
-        if (Reports::where('graduate_id',$request->input('graduate_id'))->get()) {
+        \Log::info(Reports::where('graduate_id',$request->input('graduate_id'))->get());
+        if (!(Reports::where('graduate_id',$request->input('graduate_id'))->get())) {
+            \Log::info("Before anythin");
             $newReport = Reports::where('graduate_id',$request->input('graduate_id'))->get()[0];
         \Log::info($newReport);
 
@@ -17,15 +19,19 @@ class ReportController extends Controller
         else{
             $newReport = new Reports;
         }
+
         $newReport->content = $request->input('content');
         $newReport->accomplishments = $request->input('accomplishments');
         $newReport->justification = $request->input('justification');
         $newReport->submission_date = now();
+        \Log::info("Before path store");
 
-        $path = $request->file('file')->store('uploads');
+        $path = $request->file('file')->store('public/uploads');
         $newReport->report_path = $path;
         $newReport->graduate_id = $request->input('graduate_id');
         $newReport->professor_id = 1;
+        \Log::info("After path store");
+
         $newReport->save();
         return response()->json([
             'status'=>200,
