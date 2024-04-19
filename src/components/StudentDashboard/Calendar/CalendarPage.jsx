@@ -5,6 +5,7 @@ import './CalendarPage.css'
 import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material'
 import createCalendarArray from './CreateCalendar'
 import Day from './Day/Day'
+import { useSelector } from 'react-redux'
 const CalendarPage = () => {
     const menuItems = [
         {
@@ -35,6 +36,7 @@ const CalendarPage = () => {
 
     const [currentDay, setCurrentDay] = useState(new Date());
     const [ daysToAddToCalendar, setDaysToAddToCalendar] = useState([]);
+    const taskList = useSelector((state)=>state.taskData.Tasks);
     //using month array to get current month
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
@@ -49,7 +51,7 @@ const CalendarPage = () => {
     }
 
     useEffect(()=>{
-        setDaysToAddToCalendar(createCalendarArray(currentDay))
+        setDaysToAddToCalendar(createCalendarArray(currentDay,taskList))
     }, [currentDay])
     return (
         <div className='calendarpage'>

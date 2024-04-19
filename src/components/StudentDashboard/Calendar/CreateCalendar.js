@@ -1,4 +1,4 @@
-const createCalendarArray = (currentDay) =>{
+const createCalendarArray = (currentDay, taskList) =>{
     let daysToAddToCalendar = [];
     // console.log(new Date(currentDay.getFullYear(), currentDay.getMonth(), 1));
     let firstDayOfMonth = new Date(currentDay.getFullYear(), currentDay.getMonth(), 1);
@@ -11,13 +11,24 @@ const createCalendarArray = (currentDay) =>{
         } else {
           firstDayOfMonth.setDate(firstDayOfMonth.getDate() + 1);
         }
-    
+        let checkFor = `${firstDayOfMonth.toLocaleDateString('en-ca')}`
+        // console.log(taskList);
+        // console.log(checkFor);
+        let task = null;
+        taskList.map((hastask)=>{
+          // console.log(checkFor == hastask.task.task_deadline);
+          if(checkFor == hastask.task.task_deadline){
+            task = {...hastask};
+          }
+        })
+        console.log(task);
         let calendarDay = {
           currentMonth: (firstDayOfMonth.getMonth() === currentDay.getMonth()),
           number: firstDayOfMonth.getDate(),
-          task: (i === 0 || i === 5 || i===17 || i===28 || i===31),
+          task: task,
           id:i
         }
+        // console.log(`${currentDay.getFullYear()}-${currentDay.getMonth()}-${currentDay.getDate()}`);
         daysToAddToCalendar.push(calendarDay);
     }
     return daysToAddToCalendar;
