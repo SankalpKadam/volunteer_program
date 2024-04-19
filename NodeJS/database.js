@@ -12,7 +12,7 @@ const con_object = mysql.createConnection({
   const con = ()=>con_object.connect(function(err) {
     if (err) throw err;
     console.log("Connected!");
-    // var sql = "CREATE TABLE chat (chatid INT NOT NULL, text VARCHAR(255), senderid INT, userid INT, timestamp DATETIME, PRIMARY KEY (chatid))";
+    // var sql = "CREATE TABLE chat (chatid INT NOT NULL AUTO_INCREMENT, text VARCHAR(255), senderid INT, userid INT, timestamp DATETIME, PRIMARY KEY (chatid))";
     // con_object.query(sql, function (err, result) {
     //   if (err) throw err;
     //   console.log("Table created");
