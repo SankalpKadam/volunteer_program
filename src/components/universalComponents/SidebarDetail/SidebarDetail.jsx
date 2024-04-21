@@ -1,11 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './SidebarDetail.css'
-import { useDispatch } from 'react-redux'
-import { clearMessages, setCurrentReport, setMessages } from '../../../features/tasks/taskSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { clearMessages, setChatWith, setCurrentReport, setMessages } from '../../../features/tasks/taskSlice'
 import axios from 'axios'
 const SidebarDetail = ({ title, secondaryDetail, description, link, id, report }) => {
     const dispatch = useDispatch();
+    const isLoggedIn = useSelector((state)=>state.userData);
     const getSingleReport = () => {
         axios.get(process.env.REACT_APP_API_URL + '/getsinglereport', {
             params: {
@@ -17,9 +18,14 @@ const SidebarDetail = ({ title, secondaryDetail, description, link, id, report }
         })
     }
     const getMessagesForUser = () => {
+        dispatch(setChatWith({
+            id:id,
+            name:title
+        }))
         axios.get(process.env.REACT_APP_CHAT_API_URL + 'getmessages', {
             params: {
-                id: id
+                userid: id,
+                senderid:isLoggedIn.id
             }
         }).then((response) => {
             if (response.status == 200) {

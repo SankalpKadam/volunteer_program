@@ -36,3 +36,4 @@ Route::post('/recommend',[RecommendationController::class,'saveRecommendation'])
 
 #Miscellaneous routes
 Route::get('/volunteerstudents',[ProfessorController::class,'getstudents']);
+Route::get('/allusers',[ProfessorController::class,'getAllUsers']);

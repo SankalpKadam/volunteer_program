@@ -20,7 +20,8 @@ export const taskSlice = createSlice({
         messages:[
         ],
         chatWith:{
-            id:""
+            id:"",
+            name:""
         }
     },
     reducers: {
@@ -61,7 +62,8 @@ export const taskSlice = createSlice({
             state.messages = []
         },
         setChatWith:(state, action)=>{
-            state.chatWith.id = action.payload.id
+            state.chatWith.id = action.payload.id;
+            state.chatWith.name = action.payload.name
         }
     }
 })

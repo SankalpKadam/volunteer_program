@@ -1,12 +1,20 @@
-import {con_object} from "../database.js";
-import moment from "moment/moment.js";
-async function saveMessage(req, res) {
+import { con_object } from "../database.js";
+function saveMessage(req, res) {
     try {
         const query = "INSERT INTO chat (text, senderid, userid, timestamp) VALUES (?, ?, ?, ?)";
-        const timestamp = moment().format("YYYY-MM-DD HH:MM:SS");
-        con_object.query(query,[req.body.message,req.body.sender_id,req.body.receiver_id,timestamp], (err, rows) => {
+        
+        const currentDateObject = new Date();
+        const currentYear = currentDateObject.getFullYear();
+        const currentMonth = String(currentDateObject.getMonth() + 1).padStart(2, '0'); // Adding 1 because months are zero-indexed
+        const currentDay = String(currentDateObject.getDate()).padStart(2, '0'); // Using 0 padding to have dates like 01,02..31
+        const currentHours = String(currentDateObject.getHours()).padStart(2, '0');// Using 0 padding to have dates like 00,01..23
+        const currentMinutes = String(currentDateObject.getMinutes()).padStart(2, '0');// Using 0 padding to have dates like 01,02..59
+        const currentSeconds = String(currentDateObject.getSeconds()).padStart(2, '0');// Using 0 padding to have dates like 01,02..59
+
+        const timestamp = `${currentYear}-${currentMonth}-${currentDay} ${currentHours}:${currentMinutes}:${currentSeconds}`;
+        con_object.query(query, [req.body.message, req.body.sender_id, req.body.receiver_id, timestamp], (err, rows) => {
             if (err) {
-                console.error('Error fetching messages from MySQL database:', err);
+                console.error('Error sending message', err);
                 res.status(500).json({ error: 'Error sending the message' });
                 return;
             }
@@ -19,10 +27,10 @@ async function saveMessage(req, res) {
     }
 }
 
-async function getMessages(req, res) {
+function getMessages(req, res) {
     try {
-        const query = "SELECT * FROM chat where senderid = ? or userid = ? ORDER BY timestamp";
-        con_object.query(query,[req.query.id,req.query.id], (err, rows) => {
+        const query = "SELECT * FROM chat where (userid = ? and senderid = ?) or (userid = ? and senderid = ?) ORDER BY timestamp";
+        con_object.query(query, [req.query.userid, req.query.senderid,req.query.senderid,req.query.userid], (err, rows) => {
             if (err) {
                 console.error('Error fetching messages from MySQL database:', err);
                 res.status(500).json({ error: 'Error fetching messages' });

@@ -7,11 +7,12 @@ import axios from 'axios'
 import { clearMessages, setMessages } from '../../features/tasks/taskSlice'
 const Chat = () => {
     const isLoggedIn = useSelector((state) => state.userData);
-    const messages = useSelector((state)=>state.taskData.messages);
+    const messages = useSelector((state) => state.taskData.messages);
     const [newMessage, setNewMessage] = useState('');
     const [studentList, setStudentList] = useState([]);
+    const selectedUser = useSelector((state) => state.taskData.chatWith);
     const dispatch = useDispatch();
-    const menuItems = isLoggedIn.type == "student"?[
+    const menuItems = isLoggedIn.type == "student" ? [
         {
             text: "Home",
             link: "/studenthome"
@@ -33,10 +34,10 @@ const Chat = () => {
             link: "/logout"
         },
         {
-            text:"Chat",
-            link:"/studenthome/chat"
+            text: "Chat",
+            link: "/studenthome/chat"
         }
-    ]:[
+    ] : [
         {
             text: "Home",
             link: "/professorhome"
@@ -50,45 +51,59 @@ const Chat = () => {
             link: "/professorhome/report"
         },
         {
-            text:"Tasks",
-            link:"/professorhome/tasks"
+            text: "Tasks",
+            link: "/professorhome/tasks"
         },
         {
             text: "Logout",
             link: "/logout"
         },
         {
-            text:"Chat",
-            link:"/professorhome/chat"
+            text: "Chat",
+            link: "/professorhome/chat"
         }
     ]
-    useEffect(()=>{
-        axios.get(process.env.REACT_APP_CHAT_API_URL+'getmessages',{params:{
-            id:isLoggedIn.id
-        }}).then((response)=>{
-            if (response.status == 200) {
-                dispatch(clearMessages())
-                response.data.map((message) =>{dispatch(setMessages({message }))})
+    useEffect(() => {
+
+        axios.get(process.env.REACT_APP_API_URL + '/allusers', {
+            params: {
+                id: isLoggedIn.id,
+                type: isLoggedIn.type
             }
-        }).catch((err)=>console.log(err))
-        axios.get(process.env.REACT_APP_API_URL+'/volunteerstudents').then((response)=>{
-            setStudentList(response.data.students);
+        }).then((response) => {
+            setStudentList(response.data.users);
         })
-    },[])
+    }, [])
     const sendMessage = () => {
-        // Here you would send the new message to the backend and update the messages state
-        // For simplicity, let's just add it locally
-        // setMessages([...messages, { id: messages.length + 1, userId: 1, content: newMessage, timestamp: new Date().toISOString() }]);
-        axios.post(process.env.REACT_APP_CHAT_API_URL+'savemessage',{
-            'sender_id':isLoggedIn.id,
-            'receiver_id':2,
-            'message':newMessage
-        }).then((response)=>{
-            if (response.status == 200){
-                // dispatch(setMessages({{}}))
-            }
-        }).catch((err)=>console.log(err))
-        setNewMessage('');
+        if (newMessage) {
+            axios.post(process.env.REACT_APP_CHAT_API_URL + 'savemessage', {
+                'sender_id': isLoggedIn.id,
+                'receiver_id': selectedUser.id,
+                'message': newMessage
+            }).then((response) => {
+                if (response.status == 200) {
+                    axios.get(process.env.REACT_APP_CHAT_API_URL + 'getmessages', {
+                        params: {
+                            userid: selectedUser.id,
+                            senderid: isLoggedIn.id
+                        }
+                    }).then((response) => {
+                        if (response.status == 200) {
+                            dispatch(clearMessages())
+                            response.data.map((message) => { dispatch(setMessages({ message })) })
+                        }
+                        else {
+                            console.log(response);
+                        }
+                    }).catch((err) => console.log(err))
+                }
+            }).catch((err) => console.log(err))
+            setNewMessage('');
+        }
+        else {
+            alert("Fill in the message")
+            setNewMessage('');
+        }
     };
     return (
         <div className='taskmanagement'>
@@ -98,12 +113,11 @@ const Chat = () => {
 
                     <div className="studentdashboard__title">Chat</div>
                     <div className="studentdashboard__secondaryTitle">
-                        Recipient : {"Sankalp Kadam"}
+                        Recipient : {selectedUser.name}
                     </div>
                     <div className="taskmanagement__taskList">
                         <div className="chatApp">
                             <div className="message-container">
-                                {console.log(messages)}
                                 {messages.map(message => (
                                     <div key={message.message.chatid} className={`message ${message.message.senderid === isLoggedIn.id ? 'sent' : 'received'}`}>
                                         {message.message.text}
@@ -124,7 +138,7 @@ const Chat = () => {
                     </div>
                     <div className="taskmanagement__taskList">
                         {
-                            studentList.map((deadline, index) => <SidebarDetail title={deadline.student_name} report={false} id={deadline.id} key={deadline.id}/>)
+                            studentList.map((deadline, index) => <SidebarDetail title={deadline.student_name || deadline.professor_name} report={false} id={deadline.id} key={deadline.id} />)
                         }
                     </div>
                 </div>

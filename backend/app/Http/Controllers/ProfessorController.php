@@ -32,4 +32,27 @@ class ProfessorController extends Controller
             'students'=>$users
         ]);
     }
+
+    public function getAllUsers(Request $request){
+        \Log::info(json_encode($request->all()));
+        if ($request->input("type")=="student") {
+            # code...
+            $graduates = Graduates::all()->whereNotIn('id',[$request->input('id')]);
+            $professors = Professors::all();
+        }else{
+            $graduates = Graduates::all();
+            $professors = Professors::all()->whereNotIn('id',[$request->input('id')]);
+        }
+        $users = [];
+        foreach ($professors as $prof) {
+            array_push($users,$prof);
+        }
+        foreach ($graduates as $grad) {
+            array_push($users,$grad);
+        }
+        return response()->json([
+            'status'=>200,
+            'users'=>$users
+        ]);
+    }
 }
