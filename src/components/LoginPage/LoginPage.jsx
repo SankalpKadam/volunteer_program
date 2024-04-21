@@ -13,6 +13,7 @@ const LoginPage = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.loginUser.loggedIn)//sees if a user is logged in or not
   const userType = useSelector((state)=>state.userData.type)
+  const [hasNotBeenFilled, setHasNotBeenFilled] = useState({email:false,password:false});
   const navigate = useNavigate();
   const authAccounts = {
     "sdt1234@mavs.uta.edu":{
@@ -42,6 +43,7 @@ const LoginPage = () => {
           }
           else{
             alert("Check your email again")
+            setHasNotBeenFilled({email:false,password:false})
             return
           }
         }
@@ -75,6 +77,14 @@ const LoginPage = () => {
 
     }
     else{
+      if(!userEmail && !userPasswd){
+        setHasNotBeenFilled({email:true,password:true})
+      }
+      else if(!userPasswd){
+        setHasNotBeenFilled({email:false,password:true})
+      }else{
+        setHasNotBeenFilled({email:true, password:false})
+      }
       alert("Fill in the necessary details")
     }
   }
@@ -94,13 +104,13 @@ const LoginPage = () => {
             <form action="" className="loginpage__form">
                 <label htmlFor="">
                     <span className='spanStyle'>Email Address</span>
-                    <input type="email" name="" pattern=".+@example\.com" id="emailaddress" className='loginpage__input' value={userEmail} onChange={(e)=>{
+                    <input type="email" name="" pattern="^\w+@(mavs\.uta\.edu|uta\.edu)$" id="emailaddress" required className={`loginpage__input ${hasNotBeenFilled.email ?"input__border":null}`} value={userEmail} onChange={(e)=>{
                       setUserEmail(e.target.value)
                     }}/>
                 </label>
                 <label htmlFor="">
                     <span className='spanStyle'>Password</span>
-                    <input type="password" name="" id="password" minLength="8" className='loginpage__input' value={userPasswd} onChange={(e)=>{
+                    <input type="password" name="" id="password" minLength="8" required className={`loginpage__input ${hasNotBeenFilled.password ?"input__border":null}`} value={userPasswd} onChange={(e)=>{
                       setUserPasswd(e.target.value)
                     }}/>
                 </label>

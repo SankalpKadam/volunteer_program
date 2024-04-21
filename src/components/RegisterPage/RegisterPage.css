@@ -2,6 +2,9 @@
 Kadam, Sankalp (1002072319) Kalyanapu, Nagendrababu (1002115034)
 Katragadda, Neeharika (1002159315) */
 
+.input__border{
+    border: 3px solid #D0253E !important;
+}
 .registerpage{
     overflow-x: hidden;
     width: 100%;
