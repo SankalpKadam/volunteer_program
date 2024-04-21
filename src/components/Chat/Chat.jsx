@@ -125,7 +125,7 @@ const Chat = () => {
                                 ))}
                             </div>
                             <div className="input-container">
-                                <input type="text" value={newMessage} onChange={e => setNewMessage(e.target.value)} placeholder="Type your message..." />
+                                <input type="text" value={newMessage} onChange={e => setNewMessage(e.target.value)} placeholder="Type your message..." className='chat__text'/>
                                 <button onClick={sendMessage}>Send</button>
                             </div>
                         </div>
