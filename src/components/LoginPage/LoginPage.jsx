@@ -108,11 +108,11 @@ const LoginPage = () => {
                     Login
                 </button>
             </form>
-            <div className="loginpage__forgotpassword">
+            {/* <div className="loginpage__forgotpassword">
                 <Link to="/forgotpasswd" style={{"textDecoration":"none","color":"var(--text-color)"}}>
                 Forgot Password?
                 </Link>
-            </div>
+            </div> */}
             <div className="loginpage__register">
                 <Link to="/register" style={{"textDecoration":"none","color":"var(--text-color)"}}>
                 New User? <b>Register Now</b>
