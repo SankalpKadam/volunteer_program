@@ -62,5 +62,8 @@ class MailNotify extends Mailable
                 Attachment::fromStorage($this->data['pdf'])
             ];
         }
+        else{
+            return [];
+        }
     }
 }

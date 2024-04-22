@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfessorController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\RecommendationController;
+use App\Http\Controllers\ContactController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -38,3 +39,4 @@ Route::post('/recommend',[RecommendationController::class,'saveRecommendation'])
 #Miscellaneous routes
 Route::get('/volunteerstudents',[ProfessorController::class,'getstudents']);
 Route::get('/allusers',[ProfessorController::class,'getAllUsers']);
+Route::post('/contactus',[ContactController::class,'saveQuery']);

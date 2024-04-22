@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import './ContactPage.css';
 import Navbar from '../universalComponents/Navbar/Navbar';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 const ContactPage = () => {
     const [firstname, setFirstName] = useState("")
     const [lastname, setLastName] = useState("")
@@ -11,6 +12,12 @@ const ContactPage = () => {
     function sendMessage(e) {
         e.preventDefault()
         if(firstname && lastname && email && message){
+            axios.post(process.env.REACT_APP_API_URL+'/contactus',{
+                "first_name":firstname,
+                'last_name':lastname,
+                'email':email,
+                'message':message
+            }).then((response)=>{console.log(response);}).catch((err)=>console.log(err))
             alert("Message sent")
             setEmail("")
             setFirstName("")
