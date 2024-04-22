@@ -10,7 +10,7 @@ class ReportController extends Controller
     public function saveReport(Request $request){
         \Log::info(json_encode($request->all()));
         \Log::info(Reports::where('graduate_id',$request->input('graduate_id'))->get());
-        if (!(Reports::where('graduate_id',$request->input('graduate_id'))->get())) {
+        if (count(Reports::where('graduate_id',$request->input('graduate_id'))->get())>0) {
             \Log::info("Before anythin");
             $newReport = Reports::where('graduate_id',$request->input('graduate_id'))->get()[0];
         \Log::info($newReport);
@@ -29,8 +29,9 @@ class ReportController extends Controller
         $path = $request->file('file')->store('public/uploads');
         $newReport->report_path = $path;
         $newReport->graduate_id = $request->input('graduate_id');
-        $graduate = Reports::where('graduate_id',$request->input('graduate_id'))->get();
-        $newReport->professor_id = $graduate->professor_id;
+        // $graduate = Reports::where('graduate_id',$request->input('graduate_id'))->get();
+        // return $graduate;
+        $newReport->professor_id = $request->input('professor_id');
         \Log::info("After path store");
 
         $newReport->save();
