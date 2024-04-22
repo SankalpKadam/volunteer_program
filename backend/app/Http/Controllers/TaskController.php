@@ -9,7 +9,7 @@ class TaskController extends Controller
 {
     public function getStudentTasks(Request $request){
         \Log::info(json_encode($request->all()));
-        $tasks = Tasks::where('graduate_id',$request->input('id'))->get();
+        $tasks = Tasks::where('graduate_id',$request->input('id'))->orderBy('task_deadline','asc')->get();
         return response()->json([
             'status'=>200,
             'tasks'=>$tasks
@@ -18,7 +18,7 @@ class TaskController extends Controller
 
     public function getProfessorTasks(Request $request){
         \Log::info(json_encode($request->all()));
-        $tasks = Tasks::where('professor_id',$request->input('id'))->get();
+        $tasks = Tasks::where('professor_id',$request->input('id'))->orderBy('task_deadline','asc')->get();
         return response()->json([
             'status'=>200,
             'tasks'=>$tasks
