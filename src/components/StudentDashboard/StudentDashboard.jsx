@@ -4,9 +4,11 @@ import './StudentDashboard.css'
 import Table from '../universalComponents/Table/Table'
 import SidebarDetail from '../universalComponents/SidebarDetail/SidebarDetail'
 import axios from 'axios'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { addTask } from '../../features/tasks/taskSlice'
 const StudentDashboard = () => {
-    const loggedInStudent = useSelector((state) => state.userData)
+    const loggedInStudent = useSelector((state) => state.userData);
+    const dispatch = useDispatch();
     const menuItems = [
         {
             text: "Home",
@@ -45,6 +47,8 @@ const StudentDashboard = () => {
         }).then((response) => {
             setallTasks(response.data.tasks)
             // console.log(allTasks);
+            response.data.tasks.map((task)=>dispatch(addTask({task})))
+
         });
         axios.get(api_url + '/getfeedback', {
             params: {
@@ -94,7 +98,7 @@ const StudentDashboard = () => {
                     </div>
                     <div className='studentdashboard__tasklist'>
 
-                        <Table heading="Task List" rows={allTasks} />
+                        <Table heading="Task List" rows={allTasks.slice(0,4)} />
                     </div>
                 </div>
                 <div className='studentdashboard__deadline'>
