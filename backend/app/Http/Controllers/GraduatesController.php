@@ -38,7 +38,8 @@ class GraduatesController extends Controller
         $data = [
             'subject'=>'Welcome to Volutneer Hub',
             'body'=>"Welcome to the volunteer hub",
-            'name'=>$request->input('student_name')
+            'name'=>$request->input('student_name'),
+            'pdf'=>NULL
         ];
         try{
             Mail::to($request->input('student_email'))->send(new MailNotify($data));
