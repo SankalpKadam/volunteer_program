@@ -23,10 +23,25 @@ class GraduatesController extends Controller
         try {
             //code...
             $graduate->save();
-            return response()->json([
-                        'status'=>200,
-                        'message'=>"User Registered Successfully"
-                    ]);
+            $data = [
+                'subject'=>'Welcome to Volutneer Hub',
+                'body'=>"Welcome to the volunteer hub",
+                'name'=>$request->input('student_name'),
+                'pdf'=>NULL
+            ];
+            try{
+                Mail::to($request->input('student_email'))->send(new MailNotify($data));
+    
+                return response()->json([
+                    'status'=>200,
+                    'message'=>"User Registered Successfully"
+                ]);
+            } catch (Throwable $th) {
+                return response()->json([
+                    'status'=>400,
+                    'message'=>"Mail not sent Successfully"
+                ]);
+            }
         } catch (\Throwable $th) {
             //throw $th;
             return response()->json([
@@ -35,25 +50,7 @@ class GraduatesController extends Controller
                 'error'=>$th
             ]);
         }
-        $data = [
-            'subject'=>'Welcome to Volutneer Hub',
-            'body'=>"Welcome to the volunteer hub",
-            'name'=>$request->input('student_name'),
-            'pdf'=>NULL
-        ];
-        try{
-            Mail::to($request->input('student_email'))->send(new MailNotify($data));
-
-            return response()->json([
-                'status'=>200,
-                'message'=>"User Registered Successfully"
-            ]);
-        } catch (Throwable $th) {
-            return response()->json([
-                'status'=>400,
-                'message'=>"Mail not sent Successfully"
-            ]);
-        }
+        
     }
 
     public function login(Request $request) {

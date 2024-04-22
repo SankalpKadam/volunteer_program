@@ -57,7 +57,7 @@ const StudentDashboard = () => {
         }).then((response) => {
             setFeedback(response.data.feedback)
             // console.log(allTasks);
-        });
+        }).catch((err)=>{console.log(err);});
     }, [])
     return (
         <div className='studentdashboard'>
