@@ -8,8 +8,9 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Mail\Mailables\Address;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Queue\SerializesModels;
-
+use Illuminate\Support\Facades\Storage;
 class MailNotify extends Mailable
 {
     use Queueable, SerializesModels;
@@ -43,7 +44,7 @@ class MailNotify extends Mailable
             view:'mail.email_sent',
             with:[
                 'name'=>$this->data['name'],
-                'body'=>'We are excited to have you on our volunteer portal'
+                'body'=>$this->data['body']
             ]
         );
     }
@@ -55,11 +56,11 @@ class MailNotify extends Mailable
      */
     public function attachments(): array
     {
-        // if ($this->data['pdf']) {
-        //     # code...
+        if ($this->data['pdf']) {
+            # code...
             return [
-                // Attachment::fromData(fn () => $this->data['pdf']->output(),"Recommendation.pdf")->withMime('application/pdf'),
+                Attachment::fromStorage($this->data['pdf'])
             ];
-        // }
+        }
     }
 }

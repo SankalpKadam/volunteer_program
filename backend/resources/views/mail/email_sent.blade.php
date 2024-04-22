@@ -1,5 +1,8 @@
 <div>
-    Hey {{$name}}
+    <p>Hey, {{$name}}</p>
+    <br>
     <p>{{$body}}</p>
-    <a href={{$pdf_link}}></a>
+    <br>
+    <p>Best Regards,</p>
+    <p>Volunteer Hub Team</p>
 </div>

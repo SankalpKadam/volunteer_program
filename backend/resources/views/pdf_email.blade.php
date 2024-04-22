@@ -8,5 +8,7 @@
 <body>
     <h1>Recommendation Letter</h1>
     <p>{{$text}}</p>
+    <p>Sincerely,</p>
+    <p>{{$professor_name}}</p>
 </body>
 </html>

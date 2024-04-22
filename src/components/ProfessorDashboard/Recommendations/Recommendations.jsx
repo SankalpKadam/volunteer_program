@@ -21,16 +21,8 @@ const Recommendations = () => {
                 'graduate_id':selectedId,
                 'professor_id':loggedInProfessor.id,
                 'recommendation_text':recommendationText
-            }).then((response) => response.blob())
-            .then((blob) => {              
-            //   const file = window.URL.createObjectURL(blob);
-            const file = new Blob(
-                blob, 
-                {type: 'application/pdf'});
-                const fileURL = URL.createObjectURL(file);
-                window.open(fileURL);
-            //   const iframe = document.querySelector("iframe");
-            //   if (iframe?.src) iframe.src = file;
+            }).then((response) =>{
+                // console.log(response); 
             }).catch((err)=>console.log(err))
             setSelectedValue("Click to select student")
             setProfessorName("")
