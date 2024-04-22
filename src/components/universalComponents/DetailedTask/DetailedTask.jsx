@@ -1,12 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import './DetailedTask.css'
 import { useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 const DetailedTask = () => {
     const {id} = useParams();
     const [task, setTask] = useState({});
-  
+    const navigate = useNavigate();
+    const deleteTask = ()=>{
+        axios.post(process.env.REACT_APP_API_URL+'/deleteTask',{
+            'id':id
+        }).then((response)=>{
+            if(response.status == 200){
+                navigate('/professorhome/tasks')
+            }
+            else{
+                alert("Task not deleted")
+            }
+        }).catch((err)=>console.log(err))
+    }
+
     // console.log(id);
     useEffect(() => {
       console.log(id);
@@ -55,7 +68,7 @@ const DetailedTask = () => {
 
                 </div>
             </div>
-            {authUser == "professor" && <button className='detailedtask__submitBtn'>Delete</button>}
+            {authUser == "professor" && <button className='detailedtask__submitBtn' onClick={deleteTask}>Delete</button>}
         </div>
     )
 }

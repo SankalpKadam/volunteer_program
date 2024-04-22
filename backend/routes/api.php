@@ -23,6 +23,7 @@ Route::get('/getProfessorTasks',[TaskController::class,'getProfessorTasks']);
 Route::get('/getTask',[TaskController::class,'getTask']);
 Route::post('/savetask',[TaskController::class,'saveTask']);
 Route::post('/updatetaskstatus',[TaskController::class,'updatestatus']);
+Route::post('/deleteTask',[TaskController::class,'deleteTask']);
 
 #Routes to work with Report
 Route::post('/savereport',[ReportController::class,'saveReport']);

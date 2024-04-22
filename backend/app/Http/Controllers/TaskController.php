@@ -63,4 +63,22 @@ class TaskController extends Controller
             'task'=>$task
         ]);
     }
+
+    public function deleteTask(Request $request){
+        \Log::info(json_encode($request->all()));
+        $task = Tasks::find($request->input('id'));
+        $res = $task->delete();
+        if ($res) {
+            return response()->json([
+                'status'=>200,
+                'message'=>"Task Delete Successful"
+            ]);
+        }
+        else{
+            return response()->json([
+                'status'=>500,
+                'message'=>"Task was not deleted"
+            ]); 
+        }
+    }
 }
