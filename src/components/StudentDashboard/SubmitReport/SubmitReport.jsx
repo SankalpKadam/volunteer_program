@@ -12,7 +12,7 @@ const SubmitReport = () => {
     const [submissiondate, setDate] = useState(`${year}-${month}-${date}`);
     const [fileUpload, setFileUpload] = useState(null);
     const [verified, setVerified] = useState(false);
-    const [timer, setTimer] = useState(true)
+    const [timer, setTimer] = useState(false)
     const loggedInStudent = useSelector((state)=>state.userData);
     const menuItems = [
         {
@@ -56,6 +56,7 @@ const SubmitReport = () => {
         e.preventDefault();
         console.log(e);
         if (summary && justificationOfHours && submissiondate && accomplishments &&fileUpload){
+            setTimer(true)
             const api_url = process.env.REACT_APP_API_URL;
             const formData = new FormData();
             formData.append('file',fileUpload)
@@ -63,6 +64,7 @@ const SubmitReport = () => {
             formData.append('accomplishments',accomplishments)
             formData.append('justification', justificationOfHours)
             formData.append('graduate_id',loggedInStudent.id)
+            formData.append('professor_id',loggedInStudent.professorid)
             axios.post(api_url+'/savereport',formData,{headers:{
                 "Content-Type":"multipart/form-data",
             }}).then((response)=>console.log(response)).catch((err)=>console.log(err));
@@ -72,13 +74,12 @@ const SubmitReport = () => {
             setJustificationOfHours("")
             setSummary("")
             setVerified(false)
-            setTimeout(()=>setTimer(true),60000);
+            setTimeout(()=>setTimer(false),60000);
         }
         else{
             alert("Fill all the details");
         }
     }
-    // console.log(`${year}-${month}-${date}`);
     return (
         <div className='submitreport'>
             <Navbar items={menuItems.reverse()} />
@@ -122,11 +123,11 @@ const SubmitReport = () => {
                                 <textarea name="justification" id="justification"></textarea>
                             </label> */}
                             <div className='submitreport__label'>
-                                  <ReCAPTCHA sitekey="6Lcw2MIpAAAAAKIZQFLB1brUPPRZZiwYP8Wm4qUw" onChange={()=>{setVerified(true); setTimer(false)}}/>  
+                                  <ReCAPTCHA sitekey="6Lcw2MIpAAAAAKIZQFLB1brUPPRZZiwYP8Wm4qUw" onChange={()=>{setVerified(true)}}/>  
                             </div>
                         </div>
                         <div className="submitreport__submit">
-                        <button type="submit" className='submitreport__submitBtn' onClick={submitReport} disabled={!verified && timer}>Submit</button>
+                        <button type="submit" className='submitreport__submitBtn' onClick={submitReport} disabled={!verified}>Submit</button>
                         </div>
                     </form>
                 </div>
