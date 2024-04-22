@@ -8,7 +8,8 @@ export const authUserSlice = createSlice({
         type:"",
         username:"",
         graduationDate:"",
-        id:""
+        id:"",
+        professorid:""
     },
     reducers:{
         setAuthUser:(state,action)=>{
@@ -18,6 +19,7 @@ export const authUserSlice = createSlice({
             state.username = action.payload.username;
             state.graduationDate = action.payload.graduationDate;
             state.id = action.payload.id;
+            state.professorid = action.payload.professorid;
         },
         removeAuthUser:(state)=>{
             state.type = "";
