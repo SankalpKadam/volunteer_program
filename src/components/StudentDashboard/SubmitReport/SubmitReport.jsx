@@ -1,15 +1,18 @@
-// References - https://developer.mozilla.org/en-US/docs/Web/CSS/::file-selector-button
+// References - https://developer.mozilla.org/en-US/docs/Web/CSS/::file-selector-button , https://blog.logrocket.com/implement-recaptcha-react-application/
 import React, { useState } from 'react'
 import Navbar from '../../universalComponents/Navbar/Navbar'
 import './SubmitReport.css'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
+import ReCAPTCHA from "react-google-recaptcha"
 const SubmitReport = () => {
     const [summary, setSummary]=useState("");
     const [accomplishments, setAccomplishments]=useState("");
     const [justificationOfHours, setJustificationOfHours]=useState("");
     const [submissiondate, setDate] = useState(`${year}-${month}-${date}`);
     const [fileUpload, setFileUpload] = useState(null);
+    const [verified, setVerified] = useState(false);
+    const [timer, setTimer] = useState(true)
     const loggedInStudent = useSelector((state)=>state.userData);
     const menuItems = [
         {
@@ -68,6 +71,8 @@ const SubmitReport = () => {
             setFileUpload(false)
             setJustificationOfHours("")
             setSummary("")
+            setVerified(false)
+            setTimeout(()=>setTimer(true),60000);
         }
         else{
             alert("Fill all the details");
@@ -112,14 +117,16 @@ const SubmitReport = () => {
                                 <span className='submit__spanStyle'>Justification Of Hours</span>
                                 <textarea name="justification" id="justification" onChange={(e)=>{setJustificationOfHours(e.target.value)}} value={justificationOfHours}></textarea>
                             </label>
-                            <label htmlFor="" className='submitreport__label' style={{"visibility":"hidden"}}>
+                            {/* <label htmlFor="" className='submitreport__label' style={{"visibility":"hidden"}}>
                                 <span className='spanStyle'>Justification Of Hours</span>
                                 <textarea name="justification" id="justification"></textarea>
-                            </label>
+                            </label> */}
+                            <div className='submitreport__label'>
+                                  <ReCAPTCHA sitekey="6Lcw2MIpAAAAAKIZQFLB1brUPPRZZiwYP8Wm4qUw" onChange={()=>{setVerified(true); setTimer(false)}}/>  
+                            </div>
                         </div>
                         <div className="submitreport__submit">
-
-                        <button type="submit" className='submitreport__submitBtn' onClick={submitReport}>Submit</button>
+                        <button type="submit" className='submitreport__submitBtn' onClick={submitReport} disabled={!verified && timer}>Submit</button>
                         </div>
                     </form>
                 </div>
